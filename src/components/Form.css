@@ -1,0 +1,38 @@
+form{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+section{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.wrapper input{
+    background-color: #f5f8fa;
+    border-color: #f5f8fa;
+    color: #5e6278;
+}
+
+.wrapper input:focus{
+    box-shadow: none;
+}
+
+.wrapper .submit_btn{
+    padding: 10px 15px;
+    font-weight: 500;
+}
+
+.wrapper .login_with{
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.3s ease-in-out;
+}
+.log{
+    color: white;
+    text-decoration: none;
+}
+.log:hover{
+    color: white;
+}
