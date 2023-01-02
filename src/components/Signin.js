@@ -3,6 +3,7 @@ import { useState } from 'react'
 // import { Link } from 'react-router-dom'
 // import { Link } from 'react-router-dom'
 import Footer from './Footer'
+import { decodeToken } from 'react-jwt'
 import "./Form.css"
 import Navbar from './Navbar'
 // import { Fetcher } from 'react-router-dom'
@@ -12,10 +13,10 @@ const [Username, setUsername] = useState("");
 const [Password, setPassword] = useState("");
 const navigate=useNavigate();
 let handleSubmit = async (e) => {
-// const bodyparsar=require("body-parser");
+  // const bodyparsar=require("body-parser");
                                         e.preventDefault();
                                         try {
-                                          let res = await fetch("http://localhost:3000/auth/signin", {
+                                          const res = await fetch("http://localhost:3000/auth/signin", {
                                             method: "POST",
                                             // mode:'no-cors',
                                             headers: {
@@ -25,28 +26,50 @@ let handleSubmit = async (e) => {
                                               'Username': Username,
                                               'Password': Password,
                                             }).toString()
+                                            
+                                            // body:JSON.stringify({
+                                            //   Username: Username,
+                                            //   Password: Password
+                                            // })
+                                          }).then(res => res.json()).then(data =>{
+                                            //console.log(data.access_token);  
+                                            const user = decodeToken(data.access_token);
+                                            if(user.Role==="Recruiter")
+                                            {
+                                              navigate("/dashboard1");
+                                            }
+                                            else
+                                            {
+                                              navigate("/dashboard");
+                                            }
                                           });
+                                          }
+                                          // console.log(res.json());
                                           // console.log(res.body.getReader);
-                                          // const resJson = await res.json();
+                                          // const data = await res.json();
                                           //  console.log(resJson.value);
                                           // console.log(res.status);
                                           // console.log(res.ok);
                                         //  console.log(res.arrayBuffer()); 
                                           
-                                          if (res.status===201) {
-                                            setUsername("");
-                                            setPassword("");
-                                            // console.log(res.body);
-                                            console.log("Hello2");
-                                            // <Link to='/dashboard' active></Link>
-                                            navigate("/dashboard");
-                                          } 
-                                        } catch (err) {
+                                          // if (res.status===201) {
+                                          //   setUsername("");
+                                          //   setPassword("");
+                                          //   // window.alert("Login Successfull")
+                                          //   console.log(res.json());
+                                          //   // console.log("Hello2");
+                                          //   // <Link to='/dashboard' active></Link>
+                                          //   // navigate("/dashboard");
+                                          // } 
+                                          catch (err) {
+                                          // window.alert("Login Unsuccessful")
+                                            
                                           console.log(err);
                                         }
                                         // console.log("Hello3");
                                         
-                                        
+                    //  func();                   
+                    // console.log(token);
 
     };
     return (
@@ -55,7 +78,7 @@ let handleSubmit = async (e) => {
             <section className='wrapper'>
                 <div className='container'>
                     <div className='col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center'>
-                        <form action="" className='rounded bg-white shadow p-5' onSubmit={handleSubmit}>
+                        <form method='POST' className='rounded bg-white shadow p-5' onSubmit={handleSubmit}>
                             <h3 className='text-dark fw-bolder fs-4 mb-2'>Sign In To EarnFromLearn</h3>
                             <div className='fw-normal text-muted mb-4'>
                                 New Here? <a href="/" className='text-primary fw-bold text-decoration-none'>Create An Account</a>
