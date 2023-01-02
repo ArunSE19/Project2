@@ -5,7 +5,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import './Image.css';
-import Dashboard from "./Dashboard";
+// import Dashboard from "./Dashboard";
+import Dashboard1 from "./Dashboard1";
 
 function GetSteps(){
     return [
@@ -235,7 +236,7 @@ const Postjob = () => {
      
   return (
     <div>
-        <Dashboard/>
+        <Dashboard1/>
             <div>
                 <main role="main" className="col-md-9 ms-sm-auto col-lg-10 px-4">
                     {/* <h1>hello world</h1> */}

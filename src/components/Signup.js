@@ -14,8 +14,9 @@ const Signup = () => {
     let handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            let res = await fetch("https://localhost:3000/auth/signup", {
+            var res = await fetch("http://localhost:3000/auth/signup",{
                 method: "POST",
+                // mode:"no-cors",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
 
@@ -30,6 +31,7 @@ const Signup = () => {
             });
 
             // let resJson = await res.json();
+            // console.log(res)
             if (res.status === 200) {
                 setFname("");
                 setLname("");
@@ -83,18 +85,18 @@ const Signup = () => {
                                 <label htmlFor="floatingConfirmPassword">Confirm Password</label>
                             </div>
                             <div className="form-check d-flex align-items-center">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" value={Role} id="flexRadioDefault2" checked onChange={(e) => setrole(e.target.value)}/>
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" value="Student" id="flexRadioDefault2" checked onChange={(e) => setrole(e.target.value)}/>
                                 <label className="form-check-label ms-2" htmlFor="flexRadioDefault2">
                                  Student
                                 </label>
                             </div>
                             <div className="form-check d-flex align-items-center">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" value={Role} id="flexRadioDefault2" onChange={(e) => setrole(e.target.value)}/>
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" value="Instructor" id="flexRadioDefault2" onChange={(e) => setrole(e.target.value)}/>
                                 <label className="form-check-label ms-2" htmlFor="flexRadioDefault2">
                                 Instructor                                </label>
                             </div>
                             <div className="form-check d-flex align-items-center">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" value={Role} id="flexRadioDefault2" onChange={(e) => setrole(e.target.value)}/>
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" value="Recruiter" id="flexRadioDefault2" onChange={(e) => setrole(e.target.value)}/>
                                 <label className="form-check-label ms-2" htmlFor="flexRadioDefault2">
                                  Recruiter
                                 </label>

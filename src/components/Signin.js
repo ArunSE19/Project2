@@ -1,44 +1,54 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import Footer from './Footer'
 import "./Form.css"
 import Navbar from './Navbar'
-
-const Signin = () => {
-    
+// import { Fetcher } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+const Signin = () => {        
 const [Username, setUsername] = useState("");
 const [Password, setPassword] = useState("");
+const navigate=useNavigate();
 let handleSubmit = async (e) => {
+// const bodyparsar=require("body-parser");
                                         e.preventDefault();
                                         try {
-                                          let res = await fetch("https://localhost:3000/auth/signup", {
+                                          let res = await fetch("http://localhost:3000/auth/signin", {
                                             method: "POST",
+                                            // mode:'no-cors',
                                             headers: {
                                               'Content-Type': 'application/x-www-form-urlencoded',
-                                              
                                             },
                                             body: new URLSearchParams ({
                                               'Username': Username,
                                               'Password': Password,
-                                            }).toString(),
+                                            }).toString()
                                           });
+                                          // console.log(res.body.getReader);
+                                          // const resJson = await res.json();
+                                          //  console.log(resJson.value);
+                                          // console.log(res.status);
+                                          // console.log(res.ok);
+                                        //  console.log(res.arrayBuffer()); 
                                           
-                                          // let resJson = await res.json();
-                                          if (res.status === 200) {
+                                          if (res.status===201) {
                                             setUsername("");
-                                            setPassword("")
+                                            setPassword("");
+                                            // console.log(res.body);
+                                            console.log("Hello2");
+                                            // <Link to='/dashboard' active></Link>
+                                            navigate("/dashboard");
                                           } 
                                         } catch (err) {
                                           console.log(err);
                                         }
+                                        // console.log("Hello3");
+                                        
+                                        
 
     };
-
-    
-    
-    
-    
     return (
         <>
         <Navbar/>
@@ -51,18 +61,19 @@ let handleSubmit = async (e) => {
                                 New Here? <a href="/" className='text-primary fw-bold text-decoration-none'>Create An Account</a>
                             </div>
                             <div className="form-floating mb-3">
-                                <input type="email" className="form-control" value={Username} id="floatingInput" placeholder="name@example.com" onChange={(e) => setUsername(e.target.value)}/>
+                                <input type="email" className="form-control" value={Username} id="floatingInput" placeholder="name@example.com" onChange={(e) => setUsername(e.target.value)} required/>
                                 <label htmlFor="floatingInput">Email address</label>
                             </div>
                             <div className="form-floating">
-                                <input type="password" className="form-control" value={Password} id="floatingPassword" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+                                <input type="password" className="form-control" value={Password} id="floatingPassword" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required/>
                                 <label htmlFor="floatingPassword">Password</label>
                             </div>
-                              <button type="submit" className="btn btn-primary submit_btn w-50 my-4" onClick={handleSubmit}><Link to='/dashboard' className='log'>Login</Link></button>
+                              <button type="submit" className="btn btn-primary submit_btn w-50 my-4" onclick={handleSubmit}>Login</button>
                         </form>
                     </div>
                 </div>
             </section>
+            {/* <Link to="/dashboard1" className='log'></Link></Link> */}
             {/* <br/><br/><br/><br/><br/><br/> */}
         <Footer/>
         </>
