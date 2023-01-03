@@ -18,6 +18,17 @@ body {
     bottom: initial;
     z-index: 2;
 }
+.btn .btn-primary .mt-3{
+	margin-top: 10px;
+}
+.card-body .img-thumbnail{
+	width: 70%;
+	height: 70%;
+}
+
+/* a{
+	margin-top: 50px;
+} */
 .carousel-caption h5 {
 	font-size: 45px;
 	text-transform: uppercase;

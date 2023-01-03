@@ -10,9 +10,10 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import './Image.css';
-// import Dashboard from "./Dashboard";
 import Dashboard1 from "./Dashboard1";
-
+// import Dashboard from "./Dashboard";
+var valueProfile="";
+var valueImage = "";
 function GetSteps(){
     return [
       "Basic Information",
@@ -24,15 +25,21 @@ function GetSteps(){
   }
   function GetContent(step){
     const [showPassword, setShowPassword] = React.useState(false);
-    const [Gender, setGender] = useState('');
     const [selectedImages, setSelectedImages] = useState([]);
+    const [recruiterprofile,setRecruiterProfile]=useState({
+      FirstName:"",LastName:"",Biography:"",Responsibility:"",Age:"",Gender:"",Email:"",Password:"",FacebookURL:"",
+      TwitterURL:"",LinkedInURL:"",GithubURL:"",CompanyName:"",Designation:"",CompanyBiography:"",
+    });
+     valueProfile = recruiterprofile;
+     valueImage = selectedImages;   
+     
+    const handleSubmit=(e)=>{
+      const { name, value } = e.target;
+      setRecruiterProfile({...recruiterprofile, [name]:value});} 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
   
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
-    };
-    const handleChangeGender = (event) => {
-      setGender(event.target.value);
     };
     const onSelectFile = (event) => {
       const selectedFiles = event.target.files;
@@ -85,22 +92,28 @@ function GetSteps(){
     </section></div>
           <TextField
             id="r-fname"
+            name="FirstName"
             fullWidth
             label="First Name"
             margin="normal"
             variant="standard"
-            name="r-fname"
+            value={recruiterprofile.FirstName}
+            onChange={handleSubmit}
+            
           />
               <TextField
             id="r-lname"
+            name="LastName"
             fullWidth
             label="Last Name"
             margin="normal"
             variant="standard"
-            name="r-lname"
+            value={recruiterprofile.LastName}
+            onChange={handleSubmit}
           />
            <TextField
             id="bio"
+            name="Biography"
             required
             fullWidth
             multiline
@@ -108,9 +121,12 @@ function GetSteps(){
             rows={3}
             placeholder="Briefly describe yourself"
             variant="standard"
+            value={recruiterprofile.Biography}
+            onChange={handleSubmit}
           />
           <TextField
             id="responsibility"
+            name="Responsibility"
             required
             fullWidth
             multiline
@@ -118,10 +134,13 @@ function GetSteps(){
             rows={3}
             placeholder="Briefly describe job responsibilities"
             variant="standard"
+            value={recruiterprofile.Responsibility}
+            onChange={handleSubmit}
           />
           <TextField
             id="age"
             label="Age"
+            name="Age"
             type="number"
             InputLabelProps={{
               shrink: true,
@@ -130,15 +149,18 @@ function GetSteps(){
             fullWidth
             required
             min = "18"
+            value={recruiterprofile.Age}
+            onChange={handleSubmit}
           />
            <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
         <InputLabel  id="gender">Gender</InputLabel>
         <Select
           labelId="select-gender"
           id="demo-select-gender"
-          value={Gender}
+          name="Gender"
           label="Gender"
-          onChange={handleChangeGender}
+          value={recruiterprofile.Gender}
+          onChange={handleSubmit}
         >
           <MenuItem value={1}>Male</MenuItem>
           <MenuItem value={2}>Female</MenuItem>
@@ -156,16 +178,21 @@ function GetSteps(){
           <TextField
           id="email"
           label="Email"
+          name="Email"
           variant="standard"
           placeholder="Enter your email."
           fullWidth
           margin="normal"
-          name="email"
+          value={recruiterprofile.Email}
+          onChange={handleSubmit}
         />
          <FormControl sx={{ m: 0, width: '25ch' }} variant="standard">
           <InputLabel htmlFor="password">Password</InputLabel>
           <Input
             id="password"
+            name="Password"
+            value={recruiterprofile.Password}
+            onChange={handleSubmit}
             type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
@@ -192,7 +219,9 @@ function GetSteps(){
           variant="standard"
           placeholder="Enter your facebook url."
           margin="normal"
-          name="f-url"
+          name="FacebookURL"
+          value={recruiterprofile.FacebookURL}
+          onChange={handleSubmit}
         />
           <TextField
           id="t-url"
@@ -201,25 +230,31 @@ function GetSteps(){
           variant="standard"
           placeholder="Enter yout twitter url."
           margin="normal"
-          name="t-url"
+          name="TwitterURL"
+          value={recruiterprofile.TwitterURL}
+          onChange={handleSubmit}
         />
              <TextField
           id="l-url"
+          name="LinkedInURL"
           fullWidth
           label="LinkedIn"
           variant="standard"
           placeholder="Enter your linkedin url."
           margin="normal"
-          name="l-url"
+          value={recruiterprofile.LinkedInURL}
+          onChange={handleSubmit}
         />
          <TextField
           id="g-url"
+          name="GithubURL"
           fullWidth
           label="Github"
           variant="standard"
           placeholder="Enter your github url."
           margin="normal"
-          name="g-url"
+          value={recruiterprofile.GithubURL}
+          onChange={handleSubmit}
         />
           </>
         )
@@ -234,7 +269,9 @@ function GetSteps(){
           variant="standard"
           placeholder="Enter your company's name."
           margin="normal"
-          name="comp-name"
+          name="CompanyName"
+          value={recruiterprofile.CompanyName}
+          onChange={handleSubmit}
             />
             <TextField
           id="designation"
@@ -244,7 +281,9 @@ function GetSteps(){
           variant="standard"
           placeholder="Enter your designation."
           margin="normal"
-          name="designation"
+          name="Designation"
+          value={recruiterprofile.Designation}
+          onChange={handleSubmit}
         />
           <TextField
             id="comp-bio"
@@ -255,6 +294,9 @@ function GetSteps(){
             rows={3}
             placeholder="Briefly describe your about your here."
             variant="standard"
+            name="CompanyBiography"
+          value={recruiterprofile.CompanyBiography}
+          onChange={handleSubmit}
           />
           
           </>
@@ -292,8 +334,34 @@ const Recruiterprofile = () => {
       {setSkippedSteps([activeStep])}
       setActiveStep(activeStep + 1)
     }
+    const PostData= async (e) => {
+      // e.preventDefault();
+      const {FirstName,LastName,Biography,Age,Responsibility,Gender,Email,Password,FacebookURL,TwitterURL,LinkedInURL,
+      GithubURL,CompanyName,Designation,CompanyBiography}=valueProfile;
+      const image = valueImage;
+      console.log(valueProfile)
+      console.log(valueImage)
+      // const res= await fetch("http://localhost:3000/auth/signup",{
+      //     method: "POST",
+      //     headers: {"Content-Type": 'application/x-www-form-urlencoded'},
+      //     // body:JSON.stringify({
+      //     //     First_Name,Last_Name,Username,Password,Confirm_Password,Role
+      //     // })
+      //     body: new URLSearchParams({
+      //                         // 'First_Name': FirstName,
+      //                         // 'Last_Name': LastName,
+      //                         // 'Username': Username,
+      //                         // 'Password': Password,
+      //                         // 'Role': Role,
+      //                     }).toString(),
+
+      // });
+      // const data= await res.JSON();
+      // console.log(data.status);
+  }
   return (
     
+    <>
     <div>
          <Dashboard1/>
             <div>
@@ -334,7 +402,7 @@ const Recruiterprofile = () => {
         </Typography>
       ) : (
         <>
-          <form>{GetContent(activeStep)}</form>
+          <form method="POST" onSubmit={PostData}>{GetContent(activeStep)}</form>
           <Button
             
             disabled={activeStep === 0}
@@ -356,15 +424,16 @@ const Recruiterprofile = () => {
             
             variant="contained"
             color="primary"
-            onClick={handleNext}
+            onClick={activeStep === steps.length - 1 ? PostData : handleNext}
           >
             {activeStep === steps.length - 1 ? "Submit" : "Next"}
           </Button>
         </>
       )}
-    </main>
+      </main>
     </div>
     </div>
+   </>
   );
 };
 

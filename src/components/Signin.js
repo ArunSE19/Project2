@@ -34,14 +34,31 @@ let handleSubmit = async (e) => {
                                           }).then(res => res.json()).then(data =>{
                                             //console.log(data.access_token);  
                                             const user = decodeToken(data.access_token);
-                                            if(user.Role==="Recruiter")
+                                            if(user.Role==="Recruitor")
                                             {
                                               navigate("/dashboard1");
                                             }
-                                            else
+                                            else if(user.Role==="Instructor")
                                             {
                                               navigate("/dashboard");
                                             }
+                                            else if(user.Role==="Student")
+                                            {
+                                              window.alert("System Functionality For Student Under Development");
+                                            }
+                                            else{
+                                              window.alert("Incorrect Credentials");
+                                            }
+                                            if (res.status===201) {
+                                              setUsername("");
+                                              setPassword("");
+                                              // window.alert("Login Successfull")
+                                              // console.log(res.json());
+                                              // console.log("Hello2");
+                                              // <Link to='/dashboard' active></Link>
+                                              // navigate("/dashboard");
+                                            }
+                                            
                                           });
                                           }
                                           // console.log(res.json());
@@ -52,15 +69,7 @@ let handleSubmit = async (e) => {
                                           // console.log(res.ok);
                                         //  console.log(res.arrayBuffer()); 
                                           
-                                          // if (res.status===201) {
-                                          //   setUsername("");
-                                          //   setPassword("");
-                                          //   // window.alert("Login Successfull")
-                                          //   console.log(res.json());
-                                          //   // console.log("Hello2");
-                                          //   // <Link to='/dashboard' active></Link>
-                                          //   // navigate("/dashboard");
-                                          // } 
+                                           
                                           catch (err) {
                                           // window.alert("Login Unsuccessful")
                                             

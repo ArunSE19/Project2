@@ -12,6 +12,8 @@ import Recruiterprofile from './components/RecruiterProfile';
 import Dashboard1 from './components/Dashboard1';
 import ViewProfile from './components/ViewProfile';
 import ViewProfile1 from './components/ViewProfile1';
+import ViewCourse from './components/ViewCouse'
+import ViewJobs from './components/ViewJobs';
 function App() {
   return (
     <>
@@ -27,6 +29,8 @@ function App() {
       <Route path='/RecruiterProfile' element={<Recruiterprofile/>}/>
       <Route path='/ViewProfile' element={<ViewProfile/>}></Route>
       <Route path='/ViewProfile1' element={<ViewProfile1/>}></Route>
+      <Route path='/ViewCourse' element={<ViewCourse/>}></Route>
+      <Route path='/ViewJobs' element={<ViewJobs/>}></Route>    
     </Routes>
     </>
   );

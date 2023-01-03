@@ -1,7 +1,30 @@
 import React from 'react'
+// import { decodeToken } from 'react-jwt';
 import Dashboard from './Dashboard'
 
 const ViewProfile = () => {
+    // const [userData,setData]=useState("");
+    //  const viewData=async()=>{
+    //     try{
+    //         const res=await fetch("http://localhost:3000/auth/signin",{
+    //             method:"GET",
+    //             headers:{
+    //                 Accept:"application/x-www-form-urlencoded",
+    //                 "Content-Type":"application/x-www-form-urlencoded"
+    //             },
+    //             credentials:"include"
+    //         });
+    //         const data=await res.json();  
+    //         const data1=decodeToken(data.access_token);
+    //         console.log(data1);
+    //         // setData(data1);
+    //     }catch(err){
+
+    //     }
+    //  }
+    // useEffect(()=>{
+    //     viewData();
+    // })
     return (
         <>
             <div>
@@ -17,7 +40,7 @@ const ViewProfile = () => {
                                 <div className="col-lg-4 bg-dark text-white text-center py-4">
                                     <div className="header-left">
                                         <img src="student.jpg" alt="" className='img-thumbnail rounded-circle mb-2' />
-                                        <h1 className="display-5">FirstName</h1>
+                                        <h5 className="display-5">FirstName</h5>
                                         <h4 className='lead text-uppercase text-white-50 mb-4'>Role</h4>
                                     </div>
 
@@ -93,6 +116,6 @@ const ViewProfile = () => {
             </div>
         </>
     )
-}
+};
 
 export default ViewProfile

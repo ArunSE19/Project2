@@ -1,0 +1,43 @@
+// localStorage.setItem({
+      //   'courseTitle': course.courseTitle,
+      //   'courseShortDes':course.courseShortDes ,
+      //   'courseLevel':course.courseLevel,
+      //   'courseCategory':course.courseCategory,
+      //   'courseRequirement':course.courseRequirement,
+      //   'courseOutcomes':course.courseOutcomes,
+      //   'coursePrice':course.coursePrice,
+      //   'courseURL':course.courseURL,
+      //   'courseImages':course.courseImages,
+      //   'courseKeywords':course.courseKeywords,
+      //   'courseMetaDes':course.courseMetaDes,
+      // })
+
+
+
+
+      // const {courseTitle,courseShortDes,courseLevel,courseCategory,courseRequirement,courseOutcomes,
+          // coursePrice,courseURL,courseImages,courseKeywords,courseMetaDes};
+      //   console.log(e.course);
+        // const res= await fetch("http://localhost:3000/auth/signup",{
+        //   method: "POST",
+        //   headers: {"Content-Type": 'application/x-www-form-urlencoded'},
+        //   // body:JSON.stringify({
+        //   //     First_Name,Last_Name,Username,Password,Confirm_Password,Role
+        //   // })
+        //   body: new URLSearchParams({
+        //                       'courseTitle': localStorage.getItem('courseTitle')  ,
+        //                       'courseShortDes':localStorage.getItem('courseShortDes'),
+        //                       'courseLevel':localStorage.getItem('courseLevel'),
+        //                       'courseCategory':localStorage.getItem('courseCategory'),
+        //                       'courseRequirement':localStorage.getItem('courseRequirement'),
+        //                       'courseOutcomes':localStorage.getItem('courseOutcomes'),
+        //                       'coursePrice':localStorage.getItem('coursePrice'),
+        //                       'courseURL':localStorage.getItem('courseURL'),
+        //                       'courseImages':localStorage.getItem('courseImages'),
+        //                       'courseKeywords':localStorage.getItem('courseKeywords'),
+        //                       'courseMetaDes':localStorage.getItem('courseMetaDes'),
+        //                   }).toString(),
+
+      // });
+      // const data= await res.JSON();
+      // console.log(data.status);

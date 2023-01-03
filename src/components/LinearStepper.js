@@ -8,6 +8,10 @@ import Dashboard from './Dashboard'
 import './Image.css';
 import './Lesson.css';
 
+var valueOfCourse="";
+var valueOfImage="";
+var valueOfLesson ="";
+
 function GetSteps(){
     return [
       "Basic Information",
@@ -21,43 +25,50 @@ function GetSteps(){
     ]
   }
   function GetContent(step){
-    const [serviceList, setServiceList] = useState([{ service: "" }]);
-    const [level, setLevel] = useState('');
-    const [cate, setCate] = useState('');
+    const [serviceList, setServiceList] = useState([{ lesson:"" , lessonUrl:"" , lessonDes:"" }]);
     const [selectedImages, setSelectedImages] = useState([]);
-  const handleServiceChange = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...serviceList];
-    list[index][name] = value;
-    setServiceList(list);
-  };
-  const handleServiceRemove = (index) => {
-    const list = [...serviceList];
-    list.splice(index, 1);
-    setServiceList(list);
-  };
-  const handleServiceAdd = () => {
-    setServiceList([...serviceList, { service: "" }]);
-  };
-  const handleChangeLevel = (event) => {
-      setLevel(event.target.value);
-    };
-  const handleChangeCate = (event) => {
-      setCate(event.target.value);
-    };
-  const onSelectFile = (event) => {
-      const selectedFiles = event.target.files;
-      const selectedFilesArray = Array.from(selectedFiles);
-  
-      const imagesArray = selectedFilesArray.map((file) => {
-        return URL.createObjectURL(file);
-      });
-  
-      setSelectedImages((previousImages) => previousImages.concat(imagesArray));
-  
-      // FOR BUG IN CHROME
-      event.target.value = "";
-    };
+    const [course,setCourse]=useState({
+      courseTitle:"",courseShortDes:"",courseLevel:"",courseCategory:"",courseRequirement:"",courseOutcomes:"",coursePrice:"",courseURL:"",courseKeywords:"",courseMetaDes:""
+    });
+   
+    valueOfCourse = course;
+    valueOfImage =  selectedImages;
+    valueOfLesson = serviceList;
+       // console.log(course);
+    // console.log(selectedImages);
+    // console.log(serviceList);
+    const handleSubmit=(e)=>{
+      const { name, value } = e.target;
+      setCourse({...course, [name]:value});}
+
+    const onSelectFile = (event) => {
+        const selectedFiles = event.target.files;
+        const selectedFilesArray = Array.from(selectedFiles);
+    
+        const imagesArray = selectedFilesArray.map((file) => {
+          return URL.createObjectURL(file);
+        });
+    
+        setSelectedImages((previousImages) => previousImages.concat(imagesArray));
+    
+        // FOR BUG IN CHROME
+        event.target.value = "";
+      };
+      const handleServiceChange = (e, index) => {
+        const { name, value } = e.target;
+        const list = [...serviceList];
+        list[index][name] = value;
+        setServiceList(list);
+      };
+      const handleServiceRemove = (index) => {
+        const list = [...serviceList];
+        list.splice(index, 1);
+        setServiceList(list);
+      };
+      const handleServiceAdd = () => {
+        setServiceList([...serviceList, { lesson:"" , lessonUrl:"" , lessonDes:""  }]);
+      };
+
   
     function deleteHandler(image) {
       setSelectedImages(selectedImages.filter((e) => e !== image));
@@ -69,15 +80,18 @@ function GetSteps(){
           <>
           <TextField
             id="course-title"
+            name="courseTitle"
             required
             fullWidth
             label="Course Title"
             margin="normal"
             variant="standard"
-            name="coursetitle"
+            value={course.courseTitle}
+            onChange={handleSubmit}
           />
            <TextField
             id="short-des"
+            name="courseShortDes"
             required
             fullWidth
             multiline
@@ -85,15 +99,18 @@ function GetSteps(){
             rows={3}
             placeholder="Briefly describe the course"
             variant="standard"
+            value={course.courseShortDes}
+            onChange={handleSubmit}
           />
           <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
         <InputLabel  id="level">Level</InputLabel>
         <Select
           labelId="selec-level"
           id="demo-select-level"
-          value={level}
+          name="courseLevel"
           label="Level"
-          onChange={handleChangeLevel}
+          value={course.courseLevel}
+          onChange={handleSubmit}
         >
           
           <MenuItem value={1}>Beginner</MenuItem>
@@ -106,9 +123,10 @@ function GetSteps(){
         <Select
           labelId="selec-cate"
           id="demo-select-cate"
-          value={cate}
+          name="courseCategory"
           label="Category"
-          onChange={handleChangeCate}
+          value={course.courseCategory}
+          onChange={handleSubmit}
         >
       
           <MenuItem value={1}>Technology</MenuItem>
@@ -123,12 +141,14 @@ function GetSteps(){
           <>
           <TextField
           id="req"
+          name="courseRequirement"
           label="Requirements"
           variant="standard"
           placeholder="Enter pre-requists of the course."
           fullWidth
           margin="normal"
-          name="req"
+          value={course.courseRequirement}
+          onChange={handleSubmit}
         />
           </>
         )
@@ -137,13 +157,15 @@ function GetSteps(){
           <>
           <TextField
           id="outcomes"
+          name="courseOutcomes"
           label="Outcome"
           variant="standard"
           placeholder="Enter the outcome of this course."
           fullWidth
           required
           margin="normal"
-          name="outcomes"
+          value={course.courseOutcomes}
+          onChange={handleSubmit}
         />
           </>
         )
@@ -152,6 +174,7 @@ function GetSteps(){
           <>
             <TextField
             id="c-price"
+            name="coursePrice"
             label="Price"
             type="number"
             InputLabelProps={{
@@ -160,6 +183,8 @@ function GetSteps(){
             variant="standard"
             fullWidth
             required
+            value={course.coursePrice}
+            onChange={handleSubmit}
           />
           </>
         )
@@ -168,13 +193,15 @@ function GetSteps(){
           <>
            <TextField
           id="c-url"
+          name="courseURL"
           fullWidth
           required
           label="Course overview url"
           variant="standard"
           placeholder="Enter the course overview video's url."
           margin="normal"
-          name="c-url"
+          value={course.courseURL}
+          onChange={handleSubmit}
         />
         <div> <section>
       <label className="box">
@@ -182,9 +209,8 @@ function GetSteps(){
         <br />
         <input className="invisible"
           type="file"
-          name="images"
+          name="courseImages"
           onChange={onSelectFile}
-          
           accept="image/png , image/jpeg, image/webp"
         />
       </label>
@@ -216,43 +242,45 @@ function GetSteps(){
                 {serviceList.map((singleService, index) => (
                   <div key={index} className="services">
                     <div>
-                      <TextField
-                    name="lesson"
-                    id="lesson"
-                    size="small"
-                    value={singleService.service}
-                    onChange={(e) => handleServiceChange(e, index)}
-                    required
-                    fullWidth
-                    label="Lesson Title"
-                    margin="normal"
-                    variant="standard"
-                  />
-                  <TextField
-                    name="lesson-url"
-                    id="lesson-url"
-                    size="small"
-                    value={singleService.service}
-                    onChange={(e) => handleServiceChange(e, index)}
-                    required
-                    fullWidth
-                    placeholder="Enter lesson url."
-                    label="Lesson URL"
-                    margin="normal"
-                    variant="standard"
-                  />
-                  <TextField
-                    id="lesson-des"
-                    size="small"
-                    required
-                    fullWidth
-                    multiline
-                    onChange={(e) => handleServiceChange(e, index)}
-                    label="Lesson Description"
-                    rows={3}
-                    placeholder="Briefly describe the lesson."
-                    variant="standard"
-                  /> 
+                    <TextField
+                      name="lesson"
+                      id="lesson"
+                      size="small"
+                      value={singleService.lesson}
+                      onChange={(e) => handleServiceChange(e, index)}
+                      required
+                      fullWidth
+                      label="Lesson Title"
+                      margin="normal"
+                      variant="standard"
+                    />
+                    <TextField
+                      name="lessonUrl"
+                      id="lesson-url"
+                      size="small"
+                      value={singleService.lessonUrl}
+                      onChange={(e) => handleServiceChange(e, index)}
+                      required
+                      fullWidth
+                      placeholder="Enter lesson url."
+                      label="Lesson URL"
+                      margin="normal"
+                      variant="standard"
+                    />
+                    <TextField
+                      id="lesson-des"
+                      size="small"
+                      name = "lessonDes"
+                      required
+                      fullWidth
+                      multiline
+                      value={singleService.lessonDes}
+                      onChange={(e) => handleServiceChange(e, index)}
+                      label="Lesson Description"
+                      rows={3}
+                      placeholder="Briefly describe the lesson."
+                      variant="standard"
+                    /> 
                     </div>
                     <div>
                       {serviceList.length !== 1 && (
@@ -284,21 +312,26 @@ function GetSteps(){
           <>
           <TextField
           id="keywords"
+          name="courseKeywords"
           fullWidth
           label="Meta Keywords"
           variant="standard"
           placeholder="Enter course keywords "
           margin="normal"
-          name="keywords"
+          value={course.courseKeywords}
+          onChange={handleSubmit}
         />
         <TextField
             id="meta-des"
+            name="courseMetaDes"
             fullWidth
             multiline
             label="Meta Description"
             rows={3}
             placeholder="Enter meta description of the course"
             variant="standard"
+            value={course.courseMetaDes}
+            onChange={handleSubmit}
           />
           </>
         )
@@ -331,6 +364,29 @@ const LinearStepper = () => {
       {setSkippedSteps([activeStep])}
       setActiveStep(activeStep + 1)
     }
+    const PostData= async (e) => {
+      // e.preventDefault();
+      // const {courseTitle,courseShortDes,courseLevel,courseCategory,courseRequirement,courseOutcomes,
+      //   coursePrice,courseURL,courseImages,courseKeywords,courseMetaDes}=valueOfCourse;
+//      const image = valueOfImage;
+      // const res= await fetch("http://localhost:3000/auth/signup",{
+      //     method: "POST",
+      //     headers: {"Content-Type": 'application/x-www-form-urlencoded'},
+      //     // body:JSON.stringify({
+      //     //     First_Name,Last_Name,Username,Password,Confirm_Password,Role
+      //     // })
+      //     body: new URLSearchParams({
+      //                         // 'First_Name': FirstName,
+      //                         // 'Last_Name': LastName,
+      //                         // 'Username': Username,
+      //                         // 'Password': Password,
+      //                         // 'Role': Role,
+      //                     }).toString(),
+
+      // });
+      // const data= await res.JSON();
+      // console.log(data.status);
+  }
   return (
     <>
     <div>
@@ -373,9 +429,8 @@ const LinearStepper = () => {
         </Typography>
       ) : (
         <>
-          <form>{GetContent(activeStep)}</form>
+          <form method="POST" onSubmit={PostData}>{GetContent(activeStep)}
           <Button
-            
             disabled={activeStep === 0}
             onClick={handleBack}
           >
@@ -383,7 +438,6 @@ const LinearStepper = () => {
           </Button>
           {isStepOptional(activeStep) && (
             <Button
-              
               variant="contained"
               color="primary"
               onClick={handleSkip}
@@ -392,13 +446,13 @@ const LinearStepper = () => {
             </Button>
           )}
           <Button
-            
             variant="contained"
             color="primary"
-            onClick={handleNext}
+            onClick={activeStep === steps.length - 1 ? PostData : handleNext}
           >
             {activeStep === steps.length - 1 ? "Submit" : "Next"}
           </Button>
+          </form>
         </>
       )}
     </main>

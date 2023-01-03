@@ -5,16 +5,22 @@ import Navbar from './Navbar'
 import { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 const Signup = () => {
-    const history=useNavigate();
+    const navigate=useNavigate();
     const [user,setUser]=useState({
         FirstName :"",LastName :"",Username :"",Password : "", Confirm_Password: "",Role : ""
     });
+    const [confirmPassword,setconfirmPassword]=useState("");
+    const [message,setMessage]=useState("");
+    
     let name,value;
     const handleSubmit=(e)=>{
         // console.log(e.target.value);
+        //checkValidation();
+        checkValidation();
         name=e.target.name;
         value=e.target.value;
-        setUser({...user, [name]:value});
+        setUser({...user, [name]:value}
+        );
     }
 
     const PostData= async (e) => {
@@ -33,14 +39,28 @@ const Signup = () => {
                                 'Password': Password,
                                 'Role': Role,
                             }).toString(),
-
         });
         const data= await res.JSON();
         console.log(data.status);
-        // if(data.status===201)
-        // {
-        //     history("/Signin");
-        // }
+        if(res.status===201)
+        {
+            navigate("/signin");
+        }
+    }
+    const checkValidation=e=>{
+        
+        // setconfirmPassword(e.target.value);
+        // const pass=user.Password;
+        // console.log(confirmPassword);
+        if(user.Password===user.Confirm_Password)
+        {
+            setMessage("Passwords match");
+        }
+        else
+        {
+            setMessage("Passwords donot Matched");
+        }
+        
     }
     // const [FirstName, setFname] = useState("");
     // const [LastName, setLname] = useState("");
@@ -115,12 +135,14 @@ const Signup = () => {
                                 <label htmlFor="floatingInput">Email address</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input type="password" className="form-control" value={user.Password} name="Password" id="floatingPassword" placeholder="Password" onChange={handleSubmit} />
+                                <input type="password" className="form-control" name="Password" id="floatingPassword" placeholder="Password" onChange={handleSubmit} />
                                 <label htmlFor="floatingPassword">Password</label>
                             </div>
                             <div className="form-floating mb-3">
                                 <input type="password" className="form-control" value={user.Confirm_Password} name="Confirm_Password" id="floatingConfirmPassword" placeholder="Password" onChange={handleSubmit} />
                                 <label htmlFor="floatingConfirmPassword">Confirm Password</label>
+                                <span className='password-info mt-2' >{message}</span>
+
                             </div>
                             <div className="form-check d-flex align-items-center">
                                 <input className="form-check-input" type="radio" name="Role" value="Student"  id="flexRadioDefault2" checked onChange={handleSubmit}/>

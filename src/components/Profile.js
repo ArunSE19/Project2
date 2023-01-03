@@ -9,8 +9,11 @@ import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import Dashboard from './Dashboard'
 import './Image.css';
+import Dashboard from "./Dashboard";
+
+var valuesOfProfile="";
+var valueOfImage="";
 
 function GetSteps(){
     return [
@@ -24,20 +27,22 @@ function GetSteps(){
   }
   function GetContent(step){
     const [showPassword, setShowPassword] = React.useState(false);
+    const [selectedImages, setSelectedImages] = useState([]);
+    const [profile,setProfile]=useState({
+      FirstName:"",LastName:"",Biography:"",Age:"",Gender:"",Email:"",Password:"",FacebookURL:"",TwitterURL:"",LinkedInURL:"",GithubURL:"",PaypalId:"",PaypalSecret:"",StripeId:"",StripeSecret:"",Expertise:""
+    });
+    valuesOfProfile = profile;
+    valueOfImage =  selectedImages;
+    
+    const handleSubmit=(e)=>{
+      const { name, value } = e.target;
+      setProfile({...profile, [name]:value});} 
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
   
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
     };
-    const [Gender, setGender] = useState('');
-  
-    const handleChangeGender = (event) => {
-      setGender(event.target.value);
-    };
-   
-    const [selectedImages, setSelectedImages] = useState([]);
-
     const onSelectFile = (event) => {
       const selectedFiles = event.target.files;
       const selectedFilesArray = Array.from(selectedFiles);
@@ -90,22 +95,29 @@ function GetSteps(){
     </section></div>
           <TextField
             id="f-name"
+            name="FirstName"
             fullWidth
             label="First Name"
             margin="normal"
             variant="standard"
-            name="fname"
+            value={profile.FirstName}
+            onChange={handleSubmit}
+            
           />
               <TextField
             id="l-name"
+            name="LastName"
             fullWidth
             label="Last Name"
             margin="normal"
             variant="standard"
-            name="lname"
+            value={profile.LastName}
+            onChange={handleSubmit}
+            
           />
            <TextField
             id="bio"
+            name="Biography"
             required
             fullWidth
             multiline
@@ -113,9 +125,12 @@ function GetSteps(){
             rows={3}
             placeholder="Briefly describe yourself"
             variant="standard"
+            value={profile.Biography}
+            onChange={handleSubmit}
           />
           <TextField
             id="age"
+            name="Age"
             label="Age"
             type="number"
             InputLabelProps={{
@@ -125,15 +140,18 @@ function GetSteps(){
             fullWidth
             required
             min = "18"
+            value={profile.Age}
+            onChange={handleSubmit}
           />
            <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
         <InputLabel  id="gender">Gender</InputLabel>
         <Select
           labelId="select-gender"
           id="demo-select-gender"
-          value={Gender}
+          name="Gender"
           label="Gender"
-          onChange={handleChangeGender}
+          value={profile.Gender}
+            onChange={handleSubmit}
         >
           <MenuItem value={1}>Male</MenuItem>
           <MenuItem value={2}>Female</MenuItem>
@@ -150,17 +168,23 @@ function GetSteps(){
           <>
           <TextField
           id="email"
+          name="Email"
           label="Email"
           variant="standard"
           placeholder="Enter your email."
           fullWidth
           margin="normal"
-          name="email"
+          value={profile.Email}
+          onChange={handleSubmit}
+          
         />
          <FormControl sx={{ m: 0, width: '25ch' }} variant="standard">
           <InputLabel htmlFor="password">Password</InputLabel>
           <Input
             id="password"
+            name="Password"
+            value={profile.Password}
+            onChange={handleSubmit}
             type={showPassword ? 'text' : 'password'}
             endAdornment={
               <InputAdornment position="end">
@@ -182,39 +206,50 @@ function GetSteps(){
           <>
             <TextField
           id="f-url"
+          name="FacebookURL"
           fullWidth
           label="Facebook"
           variant="standard"
           placeholder="Enter your facebook url."
           margin="normal"
-          name="f-url"
+          value={profile.FacebookURL}
+          onChange={handleSubmit}
+          
         />
           <TextField
           id="t-url"
+          name="TwitterURL"
           fullWidth
           label="Twitter"
           variant="standard"
           placeholder="Enter yout twitter url."
           margin="normal"
-          name="t-url"
+          value={profile.TwitterURL}
+            onChange={handleSubmit}
+          
         />
              <TextField
           id="l-url"
+          name="LinkedInURL"
           fullWidth
           label="LinkedIn"
           variant="standard"
           placeholder="Enter your linkedin url."
           margin="normal"
-          name="l-url"
+          value={profile.LinkedInURL}
+            onChange={handleSubmit}
+          
         />
          <TextField
           id="g-url"
+          name="GithubURL"
           fullWidth
           label="Github"
           variant="standard"
           placeholder="Enter your github url."
           margin="normal"
-          name="g-url"
+          value={profile.GithubURL}
+            onChange={handleSubmit}
         />
           </>
         )
@@ -223,43 +258,51 @@ function GetSteps(){
           <>
            <TextField
           id="p-id"
+          name="PaypalId"
           fullWidth
           required
           label="Paypal Client Id"
           variant="standard"
           placeholder="Enter your paypal id."
           margin="normal"
-          name="p-id"
+          value={profile.PaypalId}
+            onChange={handleSubmit}
             />
             <TextField
           id="p-sec"
+          name="PaypalSecret"
           fullWidth
           required
           label="Paypal Secret Key"
           variant="standard"
           placeholder="Enter your paypal secret key."
           margin="normal"
-          name="p-sec"
+          value={profile.PaypalSecret}
+          onChange={handleSubmit}
         />
            <TextField
           id="s-id"
+          name="StripeId"
           fullWidth
           required
           label="Stripe Client Id"
           variant="standard"
           placeholder="Enter your stripe id."
           margin="normal"
-          name="p-id"
+          value={profile.StripeId}
+            onChange={handleSubmit}
             />
             <TextField
           id="s-sec"
+          name="StripeSecret"
           fullWidth
           required
           label="Stripe Secret Key"
           variant="standard"
           placeholder="Enter your stripe secret key."
           margin="normal"
-          name="p-sec"
+          value={profile.StripeSecret}
+            onChange={handleSubmit}
         />
           </>
         )
@@ -268,6 +311,7 @@ function GetSteps(){
           <>
             <TextField
             id="expertise"
+            name="Expertise"
             required
             fullWidth
             multiline
@@ -275,6 +319,8 @@ function GetSteps(){
             rows={3}
             placeholder="Briefly describe your expertise here."
             variant="standard"
+            value={profile.Expertise}
+            onChange={handleSubmit}
           />
           </>
         )
@@ -311,10 +357,36 @@ const Profile = () => {
       {setSkippedSteps([activeStep])}
       setActiveStep(activeStep + 1)
     }
+    const PostData= async (e) => {
+      // e.preventDefault();
+      const {FirstName,LastName,Biography,Age,Gender,Email,Password,FacebookURL,TwitterURL,LinkedInURL,
+      GithubURL,PaypalId,PaypalSecret,StripeId,StripeSecret,Expertise}=valuesOfProfile;
+      const image = valueOfImage;
+      console.log(valuesOfProfile)
+      console.log(valueOfImage)
+      // const res= await fetch("http://localhost:3000/auth/signup",{
+      //     method: "POST",
+      //     headers: {"Content-Type": 'application/x-www-form-urlencoded'},
+      //     // body:JSON.stringify({
+      //     //     First_Name,Last_Name,Username,Password,Confirm_Password,Role
+      //     // })
+      //     body: new URLSearchParams({
+      //                         // 'First_Name': FirstName,
+      //                         // 'Last_Name': LastName,
+      //                         // 'Username': Username,
+      //                         // 'Password': Password,
+      //                         // 'Role': Role,
+      //                     }).toString(),
+
+      // });
+      // const data= await res.JSON();
+      // console.log(data.status);
+  }
   return (
     
+    <>
     <div>
-      <Dashboard />
+      <Dashboard/>
             <div>
 
                 <main role="main" className="col-md-9 ms-sm-auto col-lg-10 px-4">
@@ -353,7 +425,7 @@ const Profile = () => {
         </Typography>
       ) : (
         <>
-          <form>{GetContent(activeStep)}</form>
+          <form method="POST" onSubmit={PostData}>{GetContent(activeStep)}</form>
           <Button
             
             disabled={activeStep === 0}
@@ -375,15 +447,16 @@ const Profile = () => {
             
             variant="contained"
             color="primary"
-            onClick={handleNext}
+            onClick={activeStep === steps.length - 1 ? PostData : handleNext}
           >
             {activeStep === steps.length - 1 ? "Submit" : "Next"}
           </Button>
         </>
       )}
-       </main>
+        </main>
     </div>
     </div>
+       </>
   );
 };
 
