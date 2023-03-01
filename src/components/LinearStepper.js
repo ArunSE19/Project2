@@ -366,9 +366,10 @@ const LinearStepper = () => {
     }
     const PostData= async (e) => {
       // e.preventDefault();
-      // const {courseTitle,courseShortDes,courseLevel,courseCategory,courseRequirement,courseOutcomes,
-      //   coursePrice,courseURL,courseImages,courseKeywords,courseMetaDes}=valueOfCourse;
-//      const image = valueOfImage;
+       const {courseTitle,courseShortDes,courseLevel,courseCategory,courseRequirement,courseOutcomes,
+         coursePrice,courseURL,courseImages,courseKeywords,courseMetaDes}=valueOfCourse;
+        console.log(valueOfCourse);
+         //      const image = valueOfImage;
       // const res= await fetch("http://localhost:3000/auth/signup",{
       //     method: "POST",
       //     headers: {"Content-Type": 'application/x-www-form-urlencoded'},

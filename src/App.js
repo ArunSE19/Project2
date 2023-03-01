@@ -14,6 +14,7 @@ import ViewProfile from './components/ViewProfile';
 import ViewProfile1 from './components/ViewProfile1';
 import ViewCourse from './components/ViewCouse'
 import ViewJobs from './components/ViewJobs';
+import Body from './components/Body/Body';
 function App() {
   return (
     <>
@@ -30,7 +31,8 @@ function App() {
       <Route path='/ViewProfile' element={<ViewProfile/>}></Route>
       <Route path='/ViewProfile1' element={<ViewProfile1/>}></Route>
       <Route path='/ViewCourse' element={<ViewCourse/>}></Route>
-      <Route path='/ViewJobs' element={<ViewJobs/>}></Route>    
+      <Route path='/ViewJobs' element={<ViewJobs/>}></Route>
+      <Route path='/Body' element={<Body/>}></Route>    
     </Routes>
     </>
   );

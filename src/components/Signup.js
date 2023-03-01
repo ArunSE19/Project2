@@ -16,7 +16,7 @@ const Signup = () => {
     const handleSubmit=(e)=>{
         // console.log(e.target.value);
         //checkValidation();
-        checkValidation();
+        // checkValidation();
         name=e.target.name;
         value=e.target.value;
         setUser({...user, [name]:value}
@@ -42,26 +42,26 @@ const Signup = () => {
         });
         const data= await res.JSON();
         console.log(data.status);
-        if(res.status===201)
+        if(data.status===201)
         {
             navigate("/signin");
         }
     }
-    const checkValidation=e=>{
+    // const checkValidation=e=>{
+    //     // console.log(e.target.newValue);
+    //     // setconfirmPassword(e.target.value);
+    //     // const pass=user.Password;
+    //     // console.log(confirmPassword);
+    //     if(user.Password===user.Confirm_Password)
+    //     {
+    //         setMessage("Passwords match");
+    //     }
+    //     else
+    //     {
+    //         setMessage("Passwords donot Matched");
+    //     }
         
-        // setconfirmPassword(e.target.value);
-        // const pass=user.Password;
-        // console.log(confirmPassword);
-        if(user.Password===user.Confirm_Password)
-        {
-            setMessage("Passwords match");
-        }
-        else
-        {
-            setMessage("Passwords donot Matched");
-        }
-        
-    }
+    // }
     // const [FirstName, setFname] = useState("");
     // const [LastName, setLname] = useState("");
     // const [Username, setUsername] = useState("");
@@ -141,7 +141,7 @@ const Signup = () => {
                             <div className="form-floating mb-3">
                                 <input type="password" className="form-control" value={user.Confirm_Password} name="Confirm_Password" id="floatingConfirmPassword" placeholder="Password" onChange={handleSubmit} />
                                 <label htmlFor="floatingConfirmPassword">Confirm Password</label>
-                                <span className='password-info mt-2' >{message}</span>
+                                {/* <span className='password-info mt-2' >{message}</span> */}
 
                             </div>
                             <div className="form-check d-flex align-items-center">

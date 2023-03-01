@@ -101,12 +101,35 @@ let handleSubmit = async (e) => {
                                 <label htmlFor="floatingPassword">Password</label>
                             </div>
                               <button type="submit" className="btn btn-primary submit_btn w-50 my-4" onclick={handleSubmit}>Login</button>
+                            
+                            <div className="form-check d-flex align-items-center">
+                                {/* <input className="form-check-input" type="radio" name="Role" value="Student"  id="flexRadioDefault2" checked onChange={handleSubmit}/> */}
+                                <label className="form-check-label ms-2" htmlFor="lexRadioDefault2">
+                                
+                                </label>
+                            </div>
+                            <div className="form-check d-flex align-items-center">
+                                {/* <input className="form-check-input" type="radio" name="Role" value="Instructor" id="flexRadioDefault2" onChange={handleSubmit}/> */}
+                                <label className="form-check-label ms-2" htmlFor="flexRadioDefault2">
+                                                                </label>
+                            </div>
+                            <div className="form-check d-flex align-items-center">
+                                {/* <input className="form-check-input" type="radio" name="Role" value="Recruitor" id="flexRadioDefault2" onChange={handleSubmit}/> */}
+                                <label className="form-check-label ms-2" htmlFor="flexRadioDefault2">
+                                 
+                                </label>
+                                <label className="form-check-label ms-2" htmlFor="flexRadioDefault2">
+                                 
+                                </label>
+                            </div>
+                            
                         </form>
                     </div>
                 </div>
             </section>
             {/* <Link to="/dashboard1" className='log'></Link></Link> */}
-            {/* <br/><br/><br/><br/><br/><br/> */}
+
+            <br/><br/><br/><br/><br/><br/>
         <Footer/>
         </>
     )

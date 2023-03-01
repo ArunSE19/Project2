@@ -5,8 +5,11 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import './Image.css';
-// import Dashboard from "./Dashboard";
 import Dashboard1 from "./Dashboard1";
+
+var valuesOfJobPost="";
+var valueOfImage="";
+var valueOfQualification="";
 
 function GetSteps(){
     return [
@@ -16,29 +19,34 @@ function GetSteps(){
     ]
   }
   function GetContent(step){
-    const [serviceList, setServiceList] = useState([{ service: "" }]);
-    const [mode, setMode] = useState('');
+    const [qualificationList, setQualificationList] = useState([{ qualification: "" }]);
     const [selectedImages, setSelectedImages] = useState([]);
-    const handleServiceChange = (e, index) => {
+    const [jobpost,setJobPost]=useState({
+      JobTitle:"",JobDes:"",Responsibilities:"",Department:"",Location:"",Salary:"",Mode:""
+    });
+    valuesOfJobPost=jobpost;
+    valueOfImage=selectedImages;
+    valueOfQualification =qualificationList;
+
+    const handleSubmit=(e)=>{
       const { name, value } = e.target;
-      const list = [...serviceList];
+      setJobPost({...jobpost, [name]:value});} 
+
+    const handleQualificationChange = (e, index) => {
+      const { name, value } = e.target;
+      const list = [...qualificationList];
       list[index][name] = value;
-      setServiceList(list);
+      setQualificationList(list);
     };
-    const handleServiceRemove = (index) => {
-      const list = [...serviceList];
+    const handleQualificationRemove = (index) => {
+      const list = [...qualificationList];
       list.splice(index, 1);
-      setServiceList(list);
+      setQualificationList(list);
     };
-    const handleServiceAdd = () => {
-      setServiceList([...serviceList, { service: "" }]);
+    const handleQualificationAdd = () => {
+      setQualificationList([...qualificationList, { qualification: "" }]);
     };
 
-    
-    const handleChangeMode = (event) => {
-      setMode(event.target.value);
-    };
-    
     const onSelectFile = (event) => {
       const selectedFiles = event.target.files;
       const selectedFilesArray = Array.from(selectedFiles);
@@ -69,7 +77,6 @@ function GetSteps(){
           type="file"
           name="images"
           onChange={onSelectFile}
-          
           accept="image/png , image/jpeg, image/webp"
         />
       </label>
@@ -96,7 +103,9 @@ function GetSteps(){
             label="Job Title"
             margin="normal"
             variant="standard"
-            name="job-title"
+            name="JobTitle"
+            value={jobpost.JobTitle}
+            onChange={handleSubmit}
           />
           <TextField
             id="job-des"
@@ -107,9 +116,13 @@ function GetSteps(){
             rows={3}
             placeholder="Briefly describe the position."
             variant="standard"
+            name="JobDes"
+            value={jobpost.JobDes}
+            onChange={handleSubmit}
           />
             <TextField
             id="responsibility"
+            name="Responsibilities"
             required
             fullWidth
             multiline
@@ -117,6 +130,8 @@ function GetSteps(){
             rows={3}
             placeholder="Briefly describe job responsibilities"
             variant="standard"
+            value={jobpost.Responsibilities}
+            onChange={handleSubmit}
           />
           <TextField
             id="department"
@@ -125,18 +140,24 @@ function GetSteps(){
             label="Department"
             margin="normal"
             variant="standard"
-            name="department"
+            name="Department"
+            value={jobpost.Department}
+            onChange={handleSubmit}
           />
            <TextField
             id="location"
+            name="Location"
             fullWidth
             label="Location"
             margin="normal"
             variant="standard"
-            name="location"
+            value={jobpost.Location}
+            onChange={handleSubmit}
+            
           />
           <TextField
             id="salary"
+            name="Salary"
             label="Salary"
             type="number"
             InputLabelProps={{
@@ -145,15 +166,19 @@ function GetSteps(){
             variant="standard"
             fullWidth
             required
+            value={jobpost.Salary}
+            onChange={handleSubmit}
           />
           <FormControl sx={{ m: 1, minWidth: 250 }} size="small">
         <InputLabel  id="job-mode">Job Type</InputLabel>
         <Select
           labelId="selec-job-mode"
           id="demo-select-job-mode"
-          value={mode}
+          name="Mode"
+          value={jobpost.Mode}
+          onChange={handleSubmit}
           label="Job Type"
-          onChange={handleChangeMode}
+          
         >
           <MenuItem value={1}>Remote</MenuItem>
           <MenuItem value={2}>Office</MenuItem>
@@ -169,15 +194,15 @@ function GetSteps(){
           <form className="App" autoComplete="off">
               <div className="form-field">
                 <label htmlFor="service">Qualification and Skill(s)</label>
-                {serviceList.map((singleService, index) => (
+                {qualificationList.map((singleService, index) => (
                   <div key={index} className="services">
                     <div>
                       <TextField
-                    name="qualification/skill"
+                    name="qualification"
                     id="qualification/skill"
                     size="small"
                     value={singleService.service}
-                    onChange={(e) => handleServiceChange(e, index)}
+                    onChange={(e) => handleQualificationChange(e, index)}
                     required
                     fullWidth
                     label="Qualification/Skill"
@@ -187,12 +212,12 @@ function GetSteps(){
                    
                     </div>
                     <div>
-                      {serviceList.length !== 1 && (
+                      {qualificationList.length !== 1 && (
                         <Button
                         variant="contained"
                         size="small"
                         color="primary"
-                        onClick={() => handleServiceRemove(index)}>
+                        onClick={() => handleQualificationRemove(index)}>
                         Remove
                       </Button>
                       )}
@@ -204,7 +229,7 @@ function GetSteps(){
                       <Button
                         variant="contained"
                         color="primary"
-                        onClick={handleServiceAdd}>
+                        onClick={handleQualificationAdd}>
                         Add
                       </Button></div>
             </form>
@@ -222,10 +247,7 @@ function GetSteps(){
   }
 const Postjob = () => {
     const [activeStep, setActiveStep] = useState(0)
-    
     const steps = GetSteps()
-   
-
     const handleNext = () =>{
       setActiveStep(activeStep + 1)
      
@@ -233,15 +255,44 @@ const Postjob = () => {
     const handleBack = () =>{
       setActiveStep(activeStep - 1)
     }
-     
+    const PostData= async (e) => {
+      // e.preventDefault();
+      const {JobTitle,JobDes,Responsibilities,Department,Location,Salary,Mode}=valuesOfJobPost;
+      const image = valueOfImage;
+      
+      console.log(valuesOfJobPost);
+      console.log(valueOfQualification);
+      console.log(valueOfImage);
+      
+      // const res= await fetch("http://localhost:3000/auth/signup",{
+      //     method: "POST",
+      //     headers: {"Content-Type": 'application/x-www-form-urlencoded'},
+      //     // body:JSON.stringify({
+      //     //     First_Name,Last_Name,Username,Password,Confirm_Password,Role
+      //     // })
+      //     body: new URLSearchParams({
+      //                         // 'First_Name': FirstName,
+      //                         // 'Last_Name': LastName,
+      //                         // 'Username': Username,
+      //                         // 'Password': Password,
+      //                         // 'Role': Role,
+      //                     }).toString(),
+
+      // });
+      // const data= await res.JSON();
+      // console.log(data.status);
+  }
   return (
+  <>
     <div>
-        <Dashboard1/>
+      <Dashboard1 />
             <div>
+
                 <main role="main" className="col-md-9 ms-sm-auto col-lg-10 px-4">
                     {/* <h1>hello world</h1> */}
                     <h3>Candidates</h3>
-                    <hr />
+                    <hr /> 
+  <div>
       <Stepper alternativeLabel activeStep={activeStep}>
         {steps.map((step, index) => {
           const labelProps = {};
@@ -262,7 +313,7 @@ const Postjob = () => {
         </Typography>
       ) : (
         <>
-          <form>{GetContent(activeStep)}</form>
+          <form form method="POST" onSubmit={PostData}>{GetContent(activeStep)}</form>
           <Button
             
             disabled={activeStep === 0}
@@ -270,21 +321,21 @@ const Postjob = () => {
           >
             back
           </Button>
-        
           <Button
             
             variant="contained"
             color="primary"
-            onClick={handleNext}
+            onClick={activeStep === steps.length - 1 ? PostData : handleNext}
           >
             {activeStep === steps.length - 1 ? "Submit" : "Next"}
           </Button>
         </>
       )}
-    
+    </div>
     </main>
     </div>
     </div>
+    </>
   );
 };
 

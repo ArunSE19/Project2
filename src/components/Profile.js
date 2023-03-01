@@ -364,6 +364,7 @@ const Profile = () => {
       const image = valueOfImage;
       console.log(valuesOfProfile)
       console.log(valueOfImage)
+    
       // const res= await fetch("http://localhost:3000/auth/signup",{
       //     method: "POST",
       //     headers: {"Content-Type": 'application/x-www-form-urlencoded'},

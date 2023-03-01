@@ -1,6 +1,6 @@
 import React from 'react'
 // import { decodeToken } from 'react-jwt';
-import Dashboard from './Dashboard'
+import Dashboard1 from './Dashboard1'
 import './Dashboard.css'
 // import $ from 'jquery'
 // import { Scale } from '@mui/icons-material';
@@ -30,7 +30,7 @@ const ViewJobs = () => {
     return (
         <>
             <div>
-                <Dashboard />
+                <Dashboard1 />
                 <div>
                     <main role="main" className="col-md-9 ms-sm-auto col-lg-10 px-4">
                         {/* <h1>hello world</h1> */}
