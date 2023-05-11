@@ -7,10 +7,11 @@ import Select from '@mui/material/Select';
 import Dashboard from './Dashboard'
 import './Image.css';
 import './Lesson.css';
+import { decodeToken } from 'react-jwt'
 
 var valueOfCourse="";
 var valueOfImage="";
-var valueOfLesson ="";
+window.valueOfLesson =[""];
 
 function GetSteps(){
     return [
@@ -33,10 +34,10 @@ function GetSteps(){
    
     valueOfCourse = course;
     valueOfImage =  selectedImages;
-    valueOfLesson = serviceList;
+    window.valueOfLesson = serviceList;
        // console.log(course);
     // console.log(selectedImages);
-    // console.log(serviceList);
+    // console.log(valueOfLesson);
     const handleSubmit=(e)=>{
       const { name, value } = e.target;
       setCourse({...course, [name]:value});}
@@ -68,6 +69,10 @@ function GetSteps(){
       const handleServiceAdd = () => {
         setServiceList([...serviceList, { lesson:"" , lessonUrl:"" , lessonDes:""  }]);
       };
+
+      const getList=()=>{
+        return serviceList;
+      }
 
   
     function deleteHandler(image) {
@@ -367,24 +372,34 @@ const LinearStepper = () => {
     const PostData= async (e) => {
       // e.preventDefault();
        const {courseTitle,courseShortDes,courseLevel,courseCategory,courseRequirement,courseOutcomes,
-         coursePrice,courseURL,courseImages,courseKeywords,courseMetaDes}=valueOfCourse;
+         coursePrice,courseURL,courseImages,courseKeywords,courseMetaDes,valueOfLesson}=valueOfCourse;
+      // const { lesson,lessonUrl,lessonDes}=valueOfLesson;
         console.log(valueOfCourse);
-         //      const image = valueOfImage;
-      // const res= await fetch("http://localhost:3000/auth/signup",{
-      //     method: "POST",
-      //     headers: {"Content-Type": 'application/x-www-form-urlencoded'},
-      //     // body:JSON.stringify({
-      //     //     First_Name,Last_Name,Username,Password,Confirm_Password,Role
-      //     // })
-      //     body: new URLSearchParams({
-      //                         // 'First_Name': FirstName,
-      //                         // 'Last_Name': LastName,
-      //                         // 'Username': Username,
-      //                         // 'Password': Password,
-      //                         // 'Role': Role,
-      //                     }).toString(),
+              const image = valueOfImage;
+              const token = window.Data.access_token.toString();
+              console.log(token);
+              console.log(window.valueOfLesson);
+              const res= await fetch("http://localhost:3000/course/addCourse",{
+              method: "POST",
+                headers: {"Content-Type": 'application/x-www-form-urlencoded',
+                          "Authorization": `Bearer ${token}`},
+          // body:JSON.stringify({
+          //     First_Name,Last_Name,Username,Password,Confirm_Password,Role
+          // })
+          body: new URLSearchParams({
+                              // 'First_Name': FirstName,
+                              'Course_Title': courseTitle,
+                              'Course_Description':courseShortDes,
+                              'Course_Level':courseLevel,
+                              'Course_category':courseCategory,
+                              'Course_Requirements': courseRequirement,
+                              'Course_Outcome': courseOutcomes,
+                              'Course_Price': coursePrice,
+                              'Course_Url': courseURL,
+                              'Lectures': window.valueOfLesson,
+                          }).toString(),
 
-      // });
+      });
       // const data= await res.JSON();
       // console.log(data.status);
   }

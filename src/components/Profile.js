@@ -365,7 +365,7 @@ const Profile = () => {
       console.log(valuesOfProfile)
       console.log(valueOfImage)
     
-      // const res= await fetch("http://localhost:3000/auth/signup",{
+      // const res= await fetch("http://localhost:3000/course/addCourse",{
       //     method: "POST",
       //     headers: {"Content-Type": 'application/x-www-form-urlencoded'},
       //     // body:JSON.stringify({

@@ -1,7 +1,24 @@
+
 .form-control-primary{
     margin: 10px;
     opacity: 0.2;
     border-radius: 2px;
+}
+.lec:link{
+    text-decoration: none;
+    color: white;
+}
+.lec:visited{
+    text-decoration: none;
+    color: white;
+}
+.lec:hover{
+    text-decoration: none;
+    color: white;
+}
+.lec:active{
+    text-decoration: none;
+    color: white;
 }
 #dash{
     color: white;

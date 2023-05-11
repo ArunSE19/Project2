@@ -1,19 +1,20 @@
 import React from 'react'
 import { useState } from 'react'
-// import { Link } from 'react-router-dom'
-// import { Link } from 'react-router-dom'
+
+import { Link } from 'react-router-dom'
 import Footer from './Footer'
 import { decodeToken } from 'react-jwt'
 import "./Form.css"
 import Navbar from './Navbar'
-// import { Fetcher } from 'react-router-dom'
+
 import { useNavigate } from 'react-router-dom'
 const Signin = () => {        
 const [Username, setUsername] = useState("");
 const [Password, setPassword] = useState("");
 const navigate=useNavigate();
+window.Data="1";
 let handleSubmit = async (e) => {
-  // const bodyparsar=require("body-parser");
+
                                         e.preventDefault();
                                         try {
                                           const res = await fetch("http://localhost:3000/auth/signin", {
@@ -34,17 +35,21 @@ let handleSubmit = async (e) => {
                                           }).then(res => res.json()).then(data =>{
                                             //console.log(data.access_token);  
                                             const user = decodeToken(data.access_token);
+                                            console.log(data);
+                                            window.Data=data;
+                                            console.log(window.Data);
                                             if(user.Role==="Recruitor")
                                             {
                                               navigate("/dashboard1");
                                             }
                                             else if(user.Role==="Instructor")
                                             {
-                                              navigate("/dashboard");
+                                                navigate("/dashboard");
                                             }
                                             else if(user.Role==="Student")
                                             {
-                                              window.alert("System Functionality For Student Under Development");
+                                              
+                                              navigate("/dashboard2");
                                             }
                                             else{
                                               window.alert("Incorrect Credentials");
@@ -90,7 +95,7 @@ let handleSubmit = async (e) => {
                         <form method='POST' className='rounded bg-white shadow p-5' onSubmit={handleSubmit}>
                             <h3 className='text-dark fw-bolder fs-4 mb-2'>Sign In To EarnFromLearn</h3>
                             <div className='fw-normal text-muted mb-4'>
-                                New Here? <a href="/" className='text-primary fw-bold text-decoration-none'>Create An Account</a>
+                                New Here? <Link to="/Signup" className='text-primary fw-bold text-decoration-none'>Create An Account</Link>
                             </div>
                             <div className="form-floating mb-3">
                                 <input type="email" className="form-control" value={Username} id="floatingInput" placeholder="name@example.com" onChange={(e) => setUsername(e.target.value)} required/>

@@ -2,9 +2,13 @@ import React from 'react'
 // import { decodeToken } from 'react-jwt';
 import Dashboard from './Dashboard'
 import './Dashboard.css'
+import { Link } from 'react-router-dom';
 // import $ from 'jquery'
 // import { Scale } from '@mui/icons-material';
 const ViewCourse = () => {
+
+
+    
     // const [userData,setData]=useState("");
     //  const viewData=async()=>{
     //     try{
@@ -52,7 +56,7 @@ const ViewCourse = () => {
                                                 <p className='card-text'>Make Advanced Applications</p>
                                                 <p className='card-text mr-4 text-success'>PKR.55000</p>
                                             </div>
-                                            <button  type="button" data-bs-toggle="modal" data-bs-target="#modalID">More</button>
+                                            <button  type="button" data-bs-toggle="modal" data-bs-target="#modalID">Explore</button>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +70,7 @@ const ViewCourse = () => {
                                                 <p className='card-text'>Learn HTML CSS & JS</p>
                                                 <p className='card-text mr-4 text-success'>PKR.25000</p>
                                             </div>
-                                            <button  type="button" data-bs-toggle="modal" data-bs-target="#web">More</button>
+                                            <button  type="button" data-bs-toggle="modal" data-bs-target="#web">View Lectures</button>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +84,7 @@ const ViewCourse = () => {
                                                 <p className='card-text'>Learn applications deployment</p>
                                                 <p className='card-text mr-4 text-success'>PKR.35000</p>
                                             </div>
-                                            <button  type="button" data-bs-toggle="modal" data-bs-target="#dev">More</button>
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#dev">View Lectures</button>
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +117,7 @@ const ViewCourse = () => {
                                                         <i className='fa fa-star text-warning ml-2'>*</i>
                                                     </p>
                                                     <h4 className='product_price'>Coupon: Dev123</h4>
-                                                    <button className='btn btn-success mt-2 cart'>Add To Cart</button>
+                                                    <Link to="/DevopsLec"><button className='btn btn-success mt-2 cart'>View Lectures</button></Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -147,7 +151,7 @@ const ViewCourse = () => {
                                                         <i className='fa fa-star ml-2'></i>
                                                     </p>
                                                     <h4 className='product_price'>Coupon: Web123</h4>
-                                                    <button className='btn btn-success mt-2 cart'>Add To Cart</button>
+                                                    <button className='btn btn-success mt-2 cart'>View Lectures</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -181,14 +185,13 @@ const ViewCourse = () => {
                                                         <i className='fa fa-star ml-2'>*</i>
                                                     </p>
                                                     <h4 className='product_price'>Coupon: Fast123</h4>
-                                                    <button className='btn btn-success mt-2 cart'>Add To Cart</button>
+                                                    <button className='btn btn-success mt-2 cart'>View Lectures</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            
+                            </div>                            
                     </main>
                 </div>
             </div>

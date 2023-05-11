@@ -3,7 +3,8 @@ import Footer from './Footer'
 import "./Form.css"
 import Navbar from './Navbar'
 import { useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
+
 const Signup = () => {
     const navigate=useNavigate();
     const [user,setUser]=useState({
@@ -26,6 +27,7 @@ const Signup = () => {
     const PostData= async (e) => {
         e.preventDefault();
         const {FirstName,LastName,Username,Password,Confirm_Password,Role}=user;
+        console.log("Sending");
         const res= await fetch("http://localhost:3000/auth/signup",{
             method: "POST",
             headers: {"Content-Type": 'application/x-www-form-urlencoded'},
@@ -41,11 +43,11 @@ const Signup = () => {
                             }).toString(),
         });
         const data= await res.JSON();
-        console.log(data.status);
-        if(data.status===201)
-        {
-            navigate("/signin");
-        }
+        //console.log(data.status);
+        // if(data.status===201)
+        // {
+        //     navigate("/signin");
+        // }
     }
     // const checkValidation=e=>{
     //     // console.log(e.target.newValue);
@@ -118,7 +120,7 @@ const Signup = () => {
                         <form method="POST" className='rounded bg-white shadow p-5' onSubmit={PostData}>
                             <h3 className='text-dark fw-bolder fs-4 mb-2'>Create An Account</h3>
                             <div className='fw-normal text-muted mb-2'>
-                                Already Have an Account? <a href="/" className='text-primary fw-bold text-decoration-none'>Sign in here</a>
+                                Already Have an Account? <Link to="/Signin" className='text-primary fw-bold text-decoration-none'>Sign in here</Link>
                             </div>
                             <div className='text-center text-muted text-uppercase mb-2'>OR</div>
                             
@@ -145,7 +147,7 @@ const Signup = () => {
 
                             </div>
                             <div className="form-check d-flex align-items-center">
-                                <input className="form-check-input" type="radio" name="Role" value="Student"  id="flexRadioDefault2" checked onChange={handleSubmit}/>
+                                <input className="form-check-input" type="radio" name="Role" value="Student"  id="flexRadioDefault2" onChange={handleSubmit}/>
                                 <label className="form-check-label ms-2" htmlFor="lexRadioDefault2">
                                  Student
                                 </label>

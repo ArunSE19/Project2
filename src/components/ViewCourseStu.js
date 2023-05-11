@@ -1,87 +1,62 @@
 import React from 'react'
-// import { decodeToken } from 'react-jwt';
-import Dashboard1 from './Dashboard1'
+import Dashboard2 from './Dashboard2'
 import './Dashboard.css'
-import { Link } from 'react-router-dom';
-// import $ from 'jquery'
-// import { Scale } from '@mui/icons-material';
-const ViewJobs = () => {
-    // const [userData,setData]=useState("");
-    //  const viewData=async()=>{
-    //     try{
-    //         const res=await fetch("http://localhost:3000/auth/signin",{
-    //             method:"GET",
-    //             headers:{
-    //                 Accept:"application/x-www-form-urlencoded",
-    //                 "Content-Type":"application/x-www-form-urlencoded"
-    //             },
-    //             credentials:"include"
-    //         });
-    //         const data=await res.json();  
-    //         const data1=decodeToken(data.access_token);
-    //         console.log(data1);
-    //         // setData(data1);
-    //     }catch(err){
+// import { Link } from 'react-router-dom';
+const ViewCourseStu = () => {
 
-    //     }
-    //  }
-    // useEffect(()=>{
-    //     viewData();
-    // })
     return (
         <>
             <div>
-                <Dashboard1 />
+                <Dashboard2 />
                 <div>
                     <main role="main" className="col-md-9 ms-sm-auto col-lg-10 px-4">
                         {/* <h1>hello world</h1> */}
                         <h3>Candidates</h3>
                         <hr />
                         <div className='container mt-5'>
-                            <h1 className="text-center font-weight-normal">Jobs</h1>
+                            <h1 className="text-center font-weight-normal">Courses</h1>
                         </div>
 
                         <div className="container mt-4 d-flex mb-5">
                             <div className="row">
-                                
                                 <div className="col-md-4 mt-5">
                                     <div className="card">
-                                        <img src="dot.jpg" alt="" className="card-img-top w-70" />
+                                        <img src="AI_.jpg" alt="" className="card-img-top w-70" />
                                         <div className="card-body">
-                                            <h5 className="card-title">Dot Net Engineer</h5>
+                                            <h2 className="card-title">Artificial Intelligence</h2>
                                             <div className="d-flex justify-content-between">
-                                                <p className='card-text'>Company: Astera</p>
-                                                <p className='card-text mr-4 text-success'>Exp. 1-3 years</p>
+                                                <p className='card-text'>Make Advanced Applications</p>
+                                                <p className='card-text mr-4 text-success'>PKR.55000</p>
                                             </div>
-                                            <button  type="button" data-bs-toggle="modal" data-bs-target="#modalID">More</button>
+                                            <button  type="button" data-bs-toggle="modal" data-bs-target="#modalID">Explore</button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="col-md-4 mt-5">
                                     <div className="card">
-                                        <img src="365.jpg" alt="" className="card-img-top w-70" />
+                                        <img src="Web_.jpg" alt="" className="card-img-top w-70" />
                                         <div className="card-body">
-                                            <h5 className="card-title">Microsoft Dynamics 365 Developer</h5>
+                                            <h2 className="card-title">Web-Development</h2>
                                             <div className="d-flex justify-content-between">
-                                                <p className='card-text'>Company: Diners</p>
-                                                <p className='card-text mr-4 text-success'>Exp. Nill</p>
+                                                <p className='card-text'>Learn HTML CSS & JS</p>
+                                                <p className='card-text mr-4 text-success'>PKR.25000</p>
                                             </div>
-                                            <button  type="button" data-bs-toggle="modal" data-bs-target="#web">More</button>
+                                            <button  type="button" data-bs-toggle="modal" data-bs-target="#web">Explore</button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="col-md-4 mt-5">
                                     <div className="card">
-                                        <img src="sqa.jpg" alt="" className="card-img-top w-70" />
+                                        <img src="DevOps.jpg" alt="" className="card-img-top w-70" />
                                         <div className="card-body">
-                                            <h5 className="card-title">SQA Engineer</h5>
+                                            <h2 className="card-title">DevOps</h2>
                                             <div className="d-flex justify-content-between">
-                                                <p className='card-text'>Company: 10Pearls</p>
-                                                <p className='card-text mr-4 text-success'>Exp. 1-3 years</p>
+                                                <p className='card-text'>Learn applications deployment</p>
+                                                <p className='card-text mr-4 text-success'>PKR.35000</p>
                                             </div>
-                                            <button  type="button" data-bs-toggle="modal" data-bs-target="#dev">More</button>
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#dev">Explore</button>
                                         </div>
                                     </div>
                                 </div>
@@ -92,29 +67,29 @@ const ViewJobs = () => {
                                     <div className="modal-content">
                                         <div className="modal-header pb-2">
                                             <h2 className='font-weight-light ml-4'>Description</h2>
-                                            {/* <button type='button' className='close' data-dismiss="modal" aria-label='close'>
+                                            <button type='button' className='close' data-dismiss="modal" aria-label='close'>
                                                 <span aria-hidden="false">Taught By: Ehtisham Sheikh</span>
-                                            </button> */}
+                                            </button>
                                         </div>
                                         <div className="modal-body">
                                             <div className="row mt-2 p-3">
                                                 <div className="col-md-6">
-                                                    <img src="sqa.jpg" alt="" className="card-img-top w-70 rounded" />
+                                                    <img src="DevOps.jpg" alt="" className="card-img-top w-70 rounded" />
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <h4 className='product_name'>SQA Engineer</h4>
-                                                    <p className='product_desc'>Allowances: True</p>
-                                                    <p className='product_desc'>Shift Timing: 9AM-5PM</p>
-                                                    <p className='product_desc'>Minimum Contract: 2 years</p>
+                                                    <h3 className='product_name'>DevOps</h3>
+                                                    <p className='product_desc'>Total Lectures: 20</p>
+                                                    <p className='product_desc'>Total Assignments: 10</p>
+                                                    <p className='product_desc'>Total Duration: 50hrs</p>
                                                     <p>Review: &nbsp;&nbsp;&nbsp;
                                                         <i className='fa fa-star text-warning ml-2'>*</i>
                                                         <i className='fa fa-star text-warning ml-2'>*</i>
                                                         <i className='fa fa-star text-warning ml-2'>*</i>
                                                         <i className='fa fa-star text-warning ml-2'>*</i>
-                                                        <i className='fa fa-star  ml-2'>*</i>
+                                                        <i className='fa fa-star text-warning ml-2'>*</i>
                                                     </p>
-                                                    <h4 className='product_price'>Salary: PKR 100000</h4>
-                                                    <Link to='/PostJob'><button className='btn btn-success mt-2 cart'>Edit</button></Link>
+                                                    <h4 className='product_price'>Coupon: Dev123</h4>
+                                                    <button className='btn btn-success mt-2 cart'>View Details</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,29 +101,29 @@ const ViewJobs = () => {
                                     <div className="modal-content">
                                         <div className="modal-header pb-2">
                                             <h2 className='font-weight-light ml-4'>Description</h2>
-                                            {/* <button type='button' className='close' data-dismiss="modal" aria-label='close'>
+                                            <button type='button' className='close' data-dismiss="modal" aria-label='close'>
                                                 <span aria-hidden="false">Taught By: Moiz Soomro</span>
-                                            </button> */}
+                                            </button>
                                         </div>
                                         <div className="modal-body">
                                             <div className="row mt-2 p-3">
                                                 <div className="col-md-6">
-                                                    <img src="365.jpg" alt="" className="card-img-top w-70 rounded" />
+                                                    <img src="web_.jpg" alt="" className="card-img-top w-70 rounded" />
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <h4 className='product_name'>Microsoft Dynamics 365</h4>
-                                                    <p className='product_desc'>Allowance: True</p>
-                                                    <p className='product_desc'>Shift Timings: Flexible</p>
-                                                    <p className='product_desc'>Minimum Contract: Nil</p>
+                                                    <h3 className='product_name'>Web Development</h3>
+                                                    <p className='product_desc'>Total Lectures: 18</p>
+                                                    <p className='product_desc'>Total Assignments: 8</p>
+                                                    <p className='product_desc'>Total Duration: 35hrs</p>
                                                     <p>Review: &nbsp;&nbsp;&nbsp;
                                                         <i className='fa fa-star text-warning ml-2'>*</i>
                                                         <i className='fa fa-star text-warning ml-2'>*</i>
                                                         <i className='fa fa-star text-warning ml-2'>*</i>
-                                                        <i className='fa fa-star text-warning ml-2'>*</i>
-                                                        <i className='fa fa-star text-warning ml-2'>*</i>
+                                                        <i className='fa fa-star text-warning ml-2'></i>
+                                                        <i className='fa fa-star ml-2'></i>
                                                     </p>
-                                                    <h4 className='product_price'>Salary: PKR. 130000</h4>
-                                                    <Link to='/PostJob'><button className='btn btn-success mt-2 cart'>Edit</button></Link>
+                                                    <h4 className='product_price'>Coupon: Web123</h4>
+                                                    <button className='btn btn-success mt-2 cart'>View Details</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -160,35 +135,35 @@ const ViewJobs = () => {
                                     <div className="modal-content">
                                         <div className="modal-header pb-2">
                                             <h2 className='font-weight-light ml-4'>Description</h2>
-                                            {/* <button type='button' className='close' data-dismiss="modal" aria-label='close'>
+                                            <button type='button' className='close' data-dismiss="modal" aria-label='close'>
                                                 <span aria-hidden="false">Taught By: Shehryar Ahmed</span>
-                                            </button> */}
+                                            </button>
                                         </div>
                                         <div className="modal-body">
                                             <div className="row mt-2 p-3">
                                                 <div className="col-md-6">
-                                                    <img src="dot.jpg" alt="" className="card-img-top w-70 rounded" />
+                                                    <img src="AI_.jpg" alt="" className="card-img-top w-70 rounded" />
                                                 </div>
                                                 <div className="col-md-6">
-                                                    <h4 className='product_name'>Dot Net Developer</h4>
-                                                    <p className='product_desc'>Allowance: False</p>
-                                                    <p className='product_desc'>Shift Timings: 6PM-2AM</p>
-                                                    <p className='product_desc'>Minimum contract: 3 years</p>
+                                                    <h3 className='product_name'>Artificial Intelligence</h3>
+                                                    <p className='product_desc'>Total Lectures: 15</p>
+                                                    <p className='product_desc'>Total Assignments: 5</p>
+                                                    <p className='product_desc'>Total Duration: 45hrs</p>
                                                     <p>Review: &nbsp;&nbsp;&nbsp;
                                                         <i className='fa fa-star text-warning ml-2'>*</i>
                                                         <i className='fa fa-star text-warning ml-2'>*</i>
-                                                        <i className='fa fa-star  ml-2'>*</i>
-                                                        <i className='fa fa-star  ml-2'>*</i>
-                                                        <i className='fa fa-star  ml-2'>*</i>
+                                                        <i className='fa fa-star text-warning ml-2'>*</i>
+                                                        <i className='fa fa-star text-warning ml-2'>*</i>
+                                                        <i className='fa fa-star ml-2'>*</i>
                                                     </p>
-                                                    <h4 className='product_price'>Salary: PKR.120000</h4>
-                                                    <Link to='/PostJob'><button className='btn btn-success mt-2 cart'>Edit</button></Link>
+                                                    <h4 className='product_price'>Coupon: Fast123</h4>
+                                                    <button className='btn btn-success mt-2 cart'>View Details</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                            
                     </main>
                 </div>
             </div>
@@ -196,4 +171,4 @@ const ViewJobs = () => {
     )
 };
 
-export default ViewJobs
+export default ViewCourseStu

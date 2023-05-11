@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import ReactToPrint from "react-to-print";
 import { ArrowDown } from "react-feather";
-import Dashboard from "../Dashboard";
 import Editor from "../Editor/Editor";
 import Resume from "../Resume/Resume";
 
 import styles from "./Body.module.css";
+import Dashboard2 from "../Dashboard2";
 
 function Body() {
   const colors = ["#239ce2", "#48bb78", "#0bc5ea", "#a0aec0", "#ed8936"];
@@ -61,7 +61,7 @@ function Body() {
 
   return (
     <div>
-    <Dashboard />
+    <Dashboard2 />
     <div>
         <main role="main" className="col-md-9 ms-sm-auto col-lg-10 px-4">
             {/* <h1>hello world</h1> */}
