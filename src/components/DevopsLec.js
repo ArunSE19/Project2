@@ -13,7 +13,7 @@ const DevopsLec = (props) => {
                         <hr />
                         {/* <h1>lectures</h1> */}
                         <ElfsightWidget widgetId='ddba515b-171c-4210-8795-927a1c846262'/>
-                        </main>
+                    </main>
                 </div>
             </div>
 

@@ -1,22 +1,24 @@
 import React from 'react'
 import Dashboard2 from './Dashboard2'
 import './Dashboard.css'
+import data from './back/data/data';
+import Header from './front/Header';
+import "./Header.css";
 // import { Link } from 'react-router-dom';
 const ViewCourseStu = () => {
-
+    const {course}=data;
     return (
         <>
             <div>
                 <Dashboard2 />
                 <div>
                     <main role="main" className="col-md-9 ms-sm-auto col-lg-10 px-4">
-                        {/* <h1>hello world</h1> */}
                         <h3>Candidates</h3>
                         <hr />
                         <div className='container mt-5'>
                             <h1 className="text-center font-weight-normal">Courses</h1>
                         </div>
-
+                        <Header />
                         <div className="container mt-4 d-flex mb-5">
                             <div className="row">
                                 <div className="col-md-4 mt-5">
@@ -89,7 +91,7 @@ const ViewCourseStu = () => {
                                                         <i className='fa fa-star text-warning ml-2'>*</i>
                                                     </p>
                                                     <h4 className='product_price'>Coupon: Dev123</h4>
-                                                    <button className='btn btn-success mt-2 cart'>View Details</button>
+                                                    <button className='btn btn-success mt-2 cart'>Add To Cart</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -123,7 +125,7 @@ const ViewCourseStu = () => {
                                                         <i className='fa fa-star ml-2'></i>
                                                     </p>
                                                     <h4 className='product_price'>Coupon: Web123</h4>
-                                                    <button className='btn btn-success mt-2 cart'>View Details</button>
+                                                    <button className='btn btn-success mt-2 cart'>Add To Cart</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -157,7 +159,7 @@ const ViewCourseStu = () => {
                                                         <i className='fa fa-star ml-2'>*</i>
                                                     </p>
                                                     <h4 className='product_price'>Coupon: Fast123</h4>
-                                                    <button className='btn btn-success mt-2 cart'>View Details</button>
+                                                    <button className='btn btn-success mt-2 cart'>Add To Cart</button>
                                                 </div>
                                             </div>
                                         </div>
