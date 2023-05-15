@@ -18,7 +18,38 @@ import ViewJobs from './components/ViewJobs';
 import Body from './components/Body/Body';
 import DevopsLec from './components/DevopsLec';
 import ViewCourseStu from './components/ViewCourseStu';
+import Header from './components/Header';
+import Cart from './components/Cart';
+import data from './components/back/data/data';
+import { useState } from 'react';
 function App() {
+  const [cartItems,setCartItem]=useState([]);
+  const { courses } = data;
+  const HandleAddProduct=(course)=>{
+      const ProductExist = cartItems.find((item)=>item.id===course.id);
+      if (ProductExist){
+          setCartItem(cartItems.map((item)=>item.id===course.id ? 
+          {...ProductExist,quantity:ProductExist.quantity+0}: item));
+      }
+  else{
+      setCartItem([...cartItems, {...course,quantity:1}]);
+  }
+}
+const HandleRemoveProduct=(product)=>{
+  const ProductExist = cartItems.find((item)=>item.id===product.id);
+  if(ProductExist.quantity===1){
+    setCartItem(cartItems.filter((item)=>item.id!==product.id));
+  }
+  else{
+    setCartItem.map((item)=>item.id===product.id ? {...ProductExist,quantity:ProductExist.quantity-1}:item)
+  }
+
+}
+  // const HandleAddProduct=(course)=>{
+  //       const ProductExist = cartItems.find((item)=>(item.id===course.id));
+  //       if (ProductExist){
+  //       }
+  //   }
   return (
     <>
     <Routes>
@@ -38,7 +69,9 @@ function App() {
       <Route path='/ViewJobs' element={<ViewJobs/>}></Route>
       <Route path='/Body' element={<Body/>}></Route>   
       <Route path='/DevopsLec' element={<DevopsLec/>}></Route>
-      <Route path='/ViewCourseStu' element={<ViewCourseStu/>}></Route> 
+      <Route path='/ViewCourseStu' element={<ViewCourseStu courses={courses} HandleAddProduct={HandleAddProduct}/>}></Route> 
+      <Route path='/Header' element={<Header/>}></Route> 
+      <Route path='/Cart' element={<Cart cartItems={cartItems} HandleAddProduct={HandleAddProduct}  HandleRemoveProduct={HandleRemoveProduct}/>}></Route>       
     </Routes>
     </>
   );

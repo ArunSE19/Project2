@@ -56,7 +56,7 @@ const ViewCourse = () => {
                                                 <p className='card-text'>Make Advanced Applications</p>
                                                 <p className='card-text mr-4 text-success'>PKR.55000</p>
                                             </div>
-                                            <button  type="button" data-bs-toggle="modal" data-bs-target="#modalID">Explore</button>
+                                            <button  type="button" data-bs-toggle="modal" data-bs-target="#modalID">View Lectures</button>
                                         </div>
                                     </div>
                                 </div>
