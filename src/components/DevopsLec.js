@@ -22,8 +22,7 @@ function DevopsLec({ DevopsLink }) {
 
       <div>
         {dim}
-        <div>
-          
+        <div> 
           <main role="main" className="col-md-9 ms-sm-auto col-lg-10 px-4">
             {/* <h1>hello world</h1> */}
             <h3></h3>
