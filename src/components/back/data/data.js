@@ -14,7 +14,7 @@ const data={
         },
         {
             id:"2",
-            name:"Web Development",
+            name:"Web_Development",
             name1:"DevopsLec",
             price:25000,
             description:"Learn HTML CSS & JS",
@@ -91,7 +91,43 @@ const data={
             Lec:"https://youtu.be/Rdc31plYOLM"
         }
 
-    ],    
+    ],
+    WebDevelopment:[
+        {
+            Lec: "https://youtu.be/ZbG0c87wcM8"
+        },
+        {
+            Lec: "https://youtu.be/abcdefg"
+        },
+        {
+            Lec: "https://youtu.be/1234567"
+        },
+        {
+            Lec: "https://youtu.be/xyz123"
+        },
+        {
+            Lec: "https://youtu.be/456def"
+        },
+        {
+            Lec: "https://youtu.be/789ghi"
+        },
+        {
+            Lec: "https://youtu.be/abc123"
+        },
+        {
+            Lec: "https://youtu.be/def456"
+        },
+        {
+            Lec: "https://youtu.be/ghi789"
+        },
+        {
+            Lec: "https://youtu.be/123abc"
+        }
+    ]
+    
+    // Add more links as needed
+    
+
 }
 
 export default data;

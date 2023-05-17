@@ -7,7 +7,15 @@ const Interview = () => {
   const [Username, setUsername] = useState("");
   let handleSubmit=async (e)=>{
     setUsername(e.target.value);
-    console.log(Username);
+    e.preventDefault();
+        console.log("Sending");
+        const token = window.Data.access_token.toString();
+        console.log(token);
+        const res= await fetch(`http://localhost:3000/auth/sendMail/${Username}`,{
+            method: "POST",
+            headers: {"Content-Type": 'application/x-www-form-urlencoded', "Authorization": `Bearer ${token}`},
+        });
+    
   }
                                         
   return (

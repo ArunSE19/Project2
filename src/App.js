@@ -28,13 +28,21 @@ import StuLec from './components/StuLec';
 import data from './components/back/data/data';
 import { useState } from 'react';
 window.dash=0;
+
 function App() {
   const [cartItems,setCartItem]=useState([]);
   const [course,setCourse]=useState();
+  const [val,setValue]=useState(0);
   // const [dash,setDash]=useState("1");
-  const { courses,profilesIns,DevopsLink } = data;
+  const { courses,profilesIns,DevopsLink,WebDevelopment } = data;
+  let lecture=0; 
   const handleDash=(name)=>{
     window.dash=name;
+  }
+  const handleVal=(name)=>
+  {
+    setValue(name);
+    console.log(name);
   }
   const handleCourse=(name)=>{
     setCourse(name);
@@ -74,11 +82,13 @@ const HandleRemoveProduct=(product)=>{
       <Route path='/RecruiterProfile' element={<Recruiterprofile/>}/>
       <Route path='/ViewProfile' element={<ViewProfile profilesIns={profilesIns}/>}></Route>
       <Route path='/ViewProfile1' element={<ViewProfile1/>}></Route>
-      <Route path='/ViewCourse' element={<ViewCourse courses={courses} handleDash={handleDash}/>}></Route>
+      <Route path='/ViewCourse' element={<ViewCourse courses={courses} handleDash={handleDash} handleVal={handleVal}/>}></Route>
       <Route path='/StuLec' element={<StuLec courses={courses} handleDash={handleDash}/>}></Route>
       <Route path='/ViewJobs' element={<ViewJobs/>}></Route>
       <Route path='/Body' element={<Body/>}></Route>   
       <Route path='/:coursename' element={<DevopsLec DevopsLink={DevopsLink} />}></Route>
+      {/* <Route path='/Web_Development' element={<DevopsLec WebDevelopment={WebDevelopment} />}></Route> */}
+      {/* <Route path='/DevOps' element={<DevopsLec DevopsLink={DevopsLink} />}></Route> */}
       <Route path='/ViewCourseStu' element={<ViewCourseStu courses={courses} HandleAddProduct={HandleAddProduct}/>}></Route> 
       <Route path='/Header' element={<Header/>}></Route> 
       <Route path='/Cart' element={<Cart cartItems={cartItems} HandleAddProduct={HandleAddProduct}  HandleRemoveProduct={HandleRemoveProduct}/>}></Route>       

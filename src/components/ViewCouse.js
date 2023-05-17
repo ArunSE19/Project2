@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 // import $ from 'jquery'
 // import { Scale } from '@mui/icons-material';
 
-const ViewCourse = ({courses,handleDash}) => {
+const ViewCourse = ({courses,handleDash,handleVal}) => {
 
     // const [userData,setData]=useState("");
     //  const viewData=async()=>{
