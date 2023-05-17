@@ -69,12 +69,12 @@
   }
   
   .checked{
-    background-color: rgb(179, 83, 179);
+    background-color: #276272;
     color:white;
     box-shadow: 3px 3px 4px 1px rgb(78, 69, 78);
   }
   .option-btn:hover{
-    background-color: rgb(212, 118, 212);
+    background-color: #276272;
     color:white;
   }
   .next-button{

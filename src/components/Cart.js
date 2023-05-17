@@ -3,6 +3,9 @@ import Dashboard2 from './Dashboard2';
 import "./Cart.css"
 const Cart = ({ cartItems, HandleAddProduct, HandleRemoveProduct }) => {
   const totalPrice = cartItems.reduce((price, items) => price + items.quantity * items.price, 0);
+  const handle=()=>{
+    console.log(cartItems);
+  }
   return (
     <>
       <div>
@@ -31,7 +34,6 @@ const Cart = ({ cartItems, HandleAddProduct, HandleRemoveProduct }) => {
                         <button className='cart-items-remove' id='cart-items-remove' onClick={() => HandleRemoveProduct(items)}>-</button>
                       </div>
                       <div className='cart-item-price' id='cart-item-price'>{items.price}</div>
-                      
                     </div>
                   </>
                 ))
@@ -39,6 +41,11 @@ const Cart = ({ cartItems, HandleAddProduct, HandleRemoveProduct }) => {
                 <div className='cart-items-total-price-name'>Total Price
                   <div className='cart-Items-total-price'>PKR.{totalPrice}</div>
                 </div>
+                
+                <div className='cart-items-total-price-name1'>
+                <button className='cart-items-remove1' id='cart-items-remove1' onClick={handle}>CheckOut</button>
+                </div>
+                
               </div>
               </main>
       </div>
