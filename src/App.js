@@ -18,6 +18,8 @@ import ViewJobs from './components/ViewJobs';
 import Body from './components/Body/Body';
 import DevopsLec from './components/DevopsLec';
 // import Lec1 from './components/Lec1';
+import Quiz from './components/Quiz';
+import Test from './components/Test';
 import Interview from './components/Interview';
 import ViewCourseStu from './components/ViewCourseStu';
 import Header from './components/Header';
@@ -81,6 +83,8 @@ const HandleRemoveProduct=(product)=>{
       <Route path='/Header' element={<Header/>}></Route> 
       <Route path='/Cart' element={<Cart cartItems={cartItems} HandleAddProduct={HandleAddProduct}  HandleRemoveProduct={HandleRemoveProduct}/>}></Route>       
       <Route path='/Interview' element={<Interview/>}></Route>
+      <Route path='/Test' element={<Test/>}></Route>
+      <Route path='/Quiz' element={<Quiz/>}></Route>
     </Routes>
     </>
   );
