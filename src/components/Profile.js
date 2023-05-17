@@ -18,10 +18,10 @@ var valueOfImage="";
 function GetSteps(){
     return [
       "Basic Information",
-      "Login Credentials",
       "Social Information",
       "Payment Information",
-      "Expertise",
+      "Experience",
+      "Education",
       "Finish",
     ]
   }
@@ -29,7 +29,7 @@ function GetSteps(){
     const [showPassword, setShowPassword] = React.useState(false);
     const [selectedImages, setSelectedImages] = useState([]);
     const [profile,setProfile]=useState({
-      FirstName:"",LastName:"",Biography:"",Age:"",Gender:"",Email:"",Password:"",FacebookURL:"",TwitterURL:"",LinkedInURL:"",GithubURL:"",PaypalId:"",PaypalSecret:"",StripeId:"",StripeSecret:"",Expertise:""
+      FirstName:"",LastName:"",University:"",Company:"",Role:"",Duration:"",RoleDes:"",Year:"",Degree:"",Biography:"",Age:"",Gender:"",FacebookURL:"",TwitterURL:"",LinkedInURL:"",GithubURL:"",PaypalId:"",PaypalSecret:"",StripeId:"",StripeSecret:"",Expertise:""
     });
     valuesOfProfile = profile;
     valueOfImage =  selectedImages;
@@ -163,45 +163,45 @@ function GetSteps(){
             
           </>
           )
-      case 1:
-        return(
-          <>
-          <TextField
-          id="email"
-          name="Email"
-          label="Email"
-          variant="standard"
-          placeholder="Enter your email."
-          fullWidth
-          margin="normal"
-          value={profile.Email}
-          onChange={handleSubmit}
+      // case 1:
+      //   return(
+      //     <>
+      //     <TextField
+      //     id="email"
+      //     name="Email"
+      //     label="Email"
+      //     variant="standard"
+      //     placeholder="Enter your email."
+      //     fullWidth
+      //     margin="normal"
+      //     value={profile.Email}
+      //     onChange={handleSubmit}
           
-        />
-         <FormControl sx={{ m: 0, width: '25ch' }} variant="standard">
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <Input
-            id="password"
-            name="Password"
-            value={profile.Password}
-            onChange={handleSubmit}
-            type={showPassword ? 'text' : 'password'}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
-          </>
-        )
-      case 2:
+      //   />
+      //    <FormControl sx={{ m: 0, width: '25ch' }} variant="standard">
+      //     <InputLabel htmlFor="password">Password</InputLabel>
+      //     <Input
+      //       id="password"
+      //       name="Password"
+      //       value={profile.Password}
+      //       onChange={handleSubmit}
+      //       type={showPassword ? 'text' : 'password'}
+      //       endAdornment={
+      //         <InputAdornment position="end">
+      //           <IconButton
+      //             aria-label="toggle password visibility"
+      //             onClick={handleClickShowPassword}
+      //             onMouseDown={handleMouseDownPassword}
+      //           >
+      //             {showPassword ? <VisibilityOff /> : <Visibility />}
+      //           </IconButton>
+      //         </InputAdornment>
+      //       }
+      //     />
+      //   </FormControl>
+      //     </>
+      //   )
+      case 1:
         return(
           <>
             <TextField
@@ -253,7 +253,7 @@ function GetSteps(){
         />
           </>
         )
-      case 3:
+      case 2:
         return(
           <>
            <TextField
@@ -306,32 +306,113 @@ function GetSteps(){
         />
           </>
         )
-      case 4:
+      case 3:
         return(
           <>
             <TextField
-            id="expertise"
-            name="Expertise"
+            id="Company"
+            name="Company"
             required
             fullWidth
             multiline
-            label="Extertise"
+            label="Company"
             rows={3}
-            placeholder="Briefly describe your expertise here."
+            placeholder="Company Name"
             variant="standard"
-            value={profile.Expertise}
+            value={profile.Company}
+            onChange={handleSubmit}
+          />
+          <TextField
+            id="comTime"
+            name="Duration"
+            required
+            fullWidth
+            multiline
+            label="Duration"
+            rows={3}
+            placeholder="Duration"
+            variant="standard"
+            value={profile.Duration}
+            onChange={handleSubmit}
+          />
+          <TextField
+            id="Role"
+            name="Role"
+            required
+            fullWidth
+            multiline
+            label="Role"
+            rows={3}
+            placeholder="What Was Your Role"
+            variant="standard"
+            value={profile.Role}
+            onChange={handleSubmit}
+          />
+          <TextField
+            id="RoleInfo"
+            name="RoleInfo"
+            required
+            fullWidth
+            multiline
+            label="RoleInfo"
+            rows={3}
+            placeholder="Role Information"
+            variant="standard"
+            value={profile.RoleDes}
             onChange={handleSubmit}
           />
           </>
         )
-      case 5:
+      case 4:
           return(
             <>
-  
+                <TextField
+          id="Degree"
+          name="Degree"
+          fullWidth
+          required
+          label="Degree"
+          variant="standard"
+          placeholder="Enter Your Qualification."
+          margin="normal"
+          value={profile.Degree}
+            onChange={handleSubmit}
+            />
+              <TextField
+          id="Edu"
+          name="Education"
+          fullWidth
+          required
+          label="University"
+          variant="standard"
+          placeholder="Enter Your University."
+          margin="normal"
+          value={profile.University}
+            onChange={handleSubmit}
+            />
+             <TextField
+          id="Time"
+          name="Time"
+          fullWidth
+          required
+          label="Graduation Year"
+          variant="standard"
+          placeholder="Graduation Year."
+          margin="normal"
+          value={profile.Year}
+            onChange={handleSubmit}
+            />
         
             </>
           )
+          case 5:
+            return(
+              <>
     
+          
+              </>
+            )
+          
         default: return ""
     }
   }
@@ -360,7 +441,7 @@ const Profile = () => {
     const PostData= async (e) => {
       // e.preventDefault();
       const {FirstName,LastName,Biography,Age,Gender,Email,Password,FacebookURL,TwitterURL,LinkedInURL,
-      GithubURL,PaypalId,PaypalSecret,StripeId,StripeSecret,Expertise}=valuesOfProfile;
+      GithubURL,PaypalId,PaypalSecret,StripeId,StripeSecret,Expertise,University}=valuesOfProfile;
       const image = valueOfImage;
       console.log(valuesOfProfile)
       console.log(valueOfImage)

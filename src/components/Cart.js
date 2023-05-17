@@ -31,6 +31,7 @@ const Cart = ({ cartItems, HandleAddProduct, HandleRemoveProduct }) => {
                         <button className='cart-items-remove' id='cart-items-remove' onClick={() => HandleRemoveProduct(items)}>-</button>
                       </div>
                       <div className='cart-item-price' id='cart-item-price'>{items.price}</div>
+                      
                     </div>
                   </>
                 ))

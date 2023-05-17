@@ -58,6 +58,10 @@ height: calc(100vh-70px);
 .left-sidebar .nav-item{
     color: black;
 }
+#lecture{
+    text-decoration: none;
+    color: white;
+}
 /* 
 .card:hover{
     box-shadow: 20px 20px 80px -44px #000;

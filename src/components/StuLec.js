@@ -1,12 +1,12 @@
 import React from 'react'
 // import { decodeToken } from 'react-jwt';
-import Dashboard from './Dashboard'
+import Dashboard2 from './Dashboard2';
 import './Dashboard.css'
 import { Link } from 'react-router-dom';
 // import $ from 'jquery'
 // import { Scale } from '@mui/icons-material';
 
-const ViewCourse = ({courses}) => {
+const StuLec = ({courses}) => {
 
     // const [userData,setData]=useState("");
     //  const viewData=async()=>{
@@ -33,14 +33,14 @@ const ViewCourse = ({courses}) => {
     return (
         <>
             <div>
-                <Dashboard />
+                <Dashboard2 />
                 <div>
                     <main role="main" className="col-md-9 ms-sm-auto col-lg-10 px-4">
                         {/* <h1>hello world</h1> */}
                         <h3>Candidates</h3>
                         <hr />
                         <div className='container mt-5'>
-                            <h1 className="text-center font-weight-normal">Courses</h1>
+                            <h1 className="text-center font-weight-normal">Lectures</h1>
                         </div>
                         <div className="container mt-4 d-flex mb-5">
                             <div className="row">
@@ -67,7 +67,7 @@ const ViewCourse = ({courses}) => {
                                                     <div className="d-flex justify-content-between">
                                                         <p className='card-text'>Duration: {course.Duration} hr</p>
                                                     </div>
-                                                    <button className='btn btn-success mt-2 cart' ><Link to={'/'+course.name} id='lecture'> View Lectures</Link></button>
+                                                    <button className='btn btn-success mt-2 cart'><Link to={'/'+course.name} id='lecture'> View Lectures</Link></button>
                                                     {/* <h3>{course.name}</h3> */}
                                                     {/* <button type="button" onClick={() => { setModalData(course); setModalIsOpen(true); }}>Explore</button> */}
                                                 </div>
@@ -84,7 +84,7 @@ const ViewCourse = ({courses}) => {
     )
 };
 
-export default ViewCourse
+export default StuLec
 
 
 

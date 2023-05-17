@@ -17,14 +17,24 @@ import ViewCourse from './components/ViewCouse'
 import ViewJobs from './components/ViewJobs';
 import Body from './components/Body/Body';
 import DevopsLec from './components/DevopsLec';
+// import Lec1 from './components/Lec1';
 import ViewCourseStu from './components/ViewCourseStu';
 import Header from './components/Header';
 import Cart from './components/Cart';
+import StuLec from './components/StuLec';
 import data from './components/back/data/data';
 import { useState } from 'react';
 function App() {
   const [cartItems,setCartItem]=useState([]);
-  const { courses } = data;
+  const [course,setCourse]=useState();
+  const [dash,setDash]=useState("1");
+  const { courses,profilesIns,DevopsLink } = data;
+  const handleDash=(name)=>{
+    setDash(name);
+  }
+  const handleCourse=(name)=>{
+    setCourse(name);
+  }
   const HandleAddProduct=(course)=>{
       const ProductExist = cartItems.find((item)=>item.id===course.id);
       if (ProductExist){
@@ -45,11 +55,6 @@ const HandleRemoveProduct=(product)=>{
   }
 
 }
-  // const HandleAddProduct=(course)=>{
-  //       const ProductExist = cartItems.find((item)=>(item.id===course.id));
-  //       if (ProductExist){
-  //       }
-  //   }
   return (
     <>
     <Routes>
@@ -63,12 +68,13 @@ const HandleRemoveProduct=(product)=>{
       <Route path='/Profile' element={<Profile/>}/>
       <Route path='/PostJob' element={<Postjob/>}/>
       <Route path='/RecruiterProfile' element={<Recruiterprofile/>}/>
-      <Route path='/ViewProfile' element={<ViewProfile/>}></Route>
+      <Route path='/ViewProfile' element={<ViewProfile profilesIns={profilesIns}/>}></Route>
       <Route path='/ViewProfile1' element={<ViewProfile1/>}></Route>
-      <Route path='/ViewCourse' element={<ViewCourse/>}></Route>
+      <Route path='/ViewCourse' element={<ViewCourse courses={courses} />}></Route>
+      <Route path='/StuLec' element={<StuLec courses={courses} />}></Route>
       <Route path='/ViewJobs' element={<ViewJobs/>}></Route>
       <Route path='/Body' element={<Body/>}></Route>   
-      <Route path='/DevopsLec' element={<DevopsLec/>}></Route>
+      <Route path='/:coursename' element={<DevopsLec DevopsLink={DevopsLink} />}></Route>
       <Route path='/ViewCourseStu' element={<ViewCourseStu courses={courses} HandleAddProduct={HandleAddProduct}/>}></Route> 
       <Route path='/Header' element={<Header/>}></Route> 
       <Route path='/Cart' element={<Cart cartItems={cartItems} HandleAddProduct={HandleAddProduct}  HandleRemoveProduct={HandleRemoveProduct}/>}></Route>       
