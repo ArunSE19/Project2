@@ -24,13 +24,14 @@ import Cart from './components/Cart';
 import StuLec from './components/StuLec';
 import data from './components/back/data/data';
 import { useState } from 'react';
+window.dash=0;
 function App() {
   const [cartItems,setCartItem]=useState([]);
   const [course,setCourse]=useState();
-  const [dash,setDash]=useState("1");
+  // const [dash,setDash]=useState("1");
   const { courses,profilesIns,DevopsLink } = data;
   const handleDash=(name)=>{
-    setDash(name);
+    window.dash=name;
   }
   const handleCourse=(name)=>{
     setCourse(name);
@@ -70,8 +71,8 @@ const HandleRemoveProduct=(product)=>{
       <Route path='/RecruiterProfile' element={<Recruiterprofile/>}/>
       <Route path='/ViewProfile' element={<ViewProfile profilesIns={profilesIns}/>}></Route>
       <Route path='/ViewProfile1' element={<ViewProfile1/>}></Route>
-      <Route path='/ViewCourse' element={<ViewCourse courses={courses} />}></Route>
-      <Route path='/StuLec' element={<StuLec courses={courses} />}></Route>
+      <Route path='/ViewCourse' element={<ViewCourse courses={courses} handleDash={handleDash}/>}></Route>
+      <Route path='/StuLec' element={<StuLec courses={courses} handleDash={handleDash}/>}></Route>
       <Route path='/ViewJobs' element={<ViewJobs/>}></Route>
       <Route path='/Body' element={<Body/>}></Route>   
       <Route path='/:coursename' element={<DevopsLec DevopsLink={DevopsLink} />}></Route>

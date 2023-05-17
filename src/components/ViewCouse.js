@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 // import $ from 'jquery'
 // import { Scale } from '@mui/icons-material';
 
-const ViewCourse = ({courses}) => {
+const ViewCourse = ({courses,handleDash}) => {
 
     // const [userData,setData]=useState("");
     //  const viewData=async()=>{
@@ -67,7 +67,7 @@ const ViewCourse = ({courses}) => {
                                                     <div className="d-flex justify-content-between">
                                                         <p className='card-text'>Duration: {course.Duration} hr</p>
                                                     </div>
-                                                    <button className='btn btn-success mt-2 cart' ><Link to={'/'+course.name} id='lecture'> View Lectures</Link></button>
+                                                    <button className='btn btn-success mt-2 cart' onClick={handleDash(0)}><Link to={'/'+course.name} id='lecture'> View Lectures</Link></button>
                                                     {/* <h3>{course.name}</h3> */}
                                                     {/* <button type="button" onClick={() => { setModalData(course); setModalIsOpen(true); }}>Explore</button> */}
                                                 </div>
