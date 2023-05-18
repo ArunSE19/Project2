@@ -16,6 +16,7 @@ import ViewProfile1 from './components/ViewProfile1';
 import ViewCourse from './components/ViewCouse'
 import ViewJobs from './components/ViewJobs';
 import Body from './components/Body/Body';
+import IDE from './components/IDE';
 import DevopsLec from './components/DevopsLec';
 // import Lec1 from './components/Lec1';
 import Quiz from './components/Quiz';
@@ -36,6 +37,9 @@ function App() {
   // const [dash,setDash]=useState("1");
   const { courses,profilesIns,DevopsLink,WebDevelopment } = data;
   let lecture=0; 
+  const handlecompile=(name)=>{
+    <div data-pym-src="https://www.jdoodle.com/embed/v0/2"></div>
+  }
   const handleDash=(name)=>{
     window.dash=name;
   }
@@ -65,7 +69,7 @@ const HandleRemoveProduct=(product)=>{
   else{
     setCartItem.map((item)=>item.id===product.id ? {...ProductExist,quantity:ProductExist.quantity-1}:item)
   }
-
+  
 }
   return (
     <>
@@ -86,7 +90,8 @@ const HandleRemoveProduct=(product)=>{
       <Route path='/StuLec' element={<StuLec courses={courses} handleDash={handleDash}/>}></Route>
       <Route path='/ViewJobs' element={<ViewJobs/>}></Route>
       <Route path='/Body' element={<Body/>}></Route>   
-      <Route path='/:coursename' element={<DevopsLec DevopsLink={DevopsLink} />}></Route>
+      <Route path='/:coursename' element={<DevopsLec DevopsLink={DevopsLink}/>}></Route>
+      {/* <Route path='/Web_Development' element={<DevopsLec DevopsLink={null} WebDevelopment={WebDevelopment}/>}></Route> */}
       {/* <Route path='/Web_Development' element={<DevopsLec WebDevelopment={WebDevelopment} />}></Route> */}
       {/* <Route path='/DevOps' element={<DevopsLec DevopsLink={DevopsLink} />}></Route> */}
       <Route path='/ViewCourseStu' element={<ViewCourseStu courses={courses} HandleAddProduct={HandleAddProduct}/>}></Route> 
@@ -95,6 +100,7 @@ const HandleRemoveProduct=(product)=>{
       <Route path='/Interview' element={<Interview/>}></Route>
       <Route path='/Test' element={<Test/>}></Route>
       <Route path='/Quiz' element={<Quiz/>}></Route>
+      <Route path='/IDE' element={<IDE handlecompile={handlecompile}/> }></Route> 
     </Routes>
     </>
   );

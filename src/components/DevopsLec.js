@@ -30,8 +30,10 @@ function DevopsLec({ DevopsLink }) {
             {/* <h1>{coursename}</h1> */}
             {/* {props.match.params.coursename} */}
             {DevopsLink.map((DevopsLink) => (
-              <ReactPlayer url={DevopsLink.lec} className='mx-2 my-4' />
-            ))}
+                  <ReactPlayer url={DevopsLink.lec} className='mx-2 my-4' />
+                ))}
+            
+            
 
           </main>
         </div>
